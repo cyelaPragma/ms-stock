@@ -1,12 +1,11 @@
 package com.acelera.ti.stock.domain.model.model.product;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Builder
 @Getter
 @Setter
+@EqualsAndHashCode
 public class Product {
     private Long id;
     private String name;
