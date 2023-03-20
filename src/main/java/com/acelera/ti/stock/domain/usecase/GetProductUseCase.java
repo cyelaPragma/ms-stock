@@ -11,7 +11,8 @@ import java.util.List;
 @RequiredArgsConstructor
 public class GetProductUseCase {
     private final ProductServices productServices;
-    public Product action(Long id) {
+
+    public Product findProductById(Long id) {
         Product product = productServices.getProductById(id);
         if (product == null) {
             throw new ProductNotFoundException();
@@ -19,3 +20,4 @@ public class GetProductUseCase {
         return product;
     }
 }
+
