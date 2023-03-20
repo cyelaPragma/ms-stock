@@ -39,6 +39,11 @@ class GetAllProductsUseCaseTest {
         assertThrows(NotExistProductsException.class, () -> getAllProductsUseCase.action());
     }
     @Test
+    void readAllProductsNull() {
+        when(productServices.getAllProducts()).thenReturn(null);
+        assertThrows(NotExistProductsException.class, () -> getAllProductsUseCase.action());
+    }
+    @Test
     void readAllProductsTechnicalError() {
         doThrow(TechnicalException.class).when(productServices).getAllProducts();
         assertThrows(TechnicalException.class, () -> getAllProductsUseCase.action());

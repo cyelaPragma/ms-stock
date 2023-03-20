@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface StockRepository {
     List<Stock> getAllStock();
+    Stock getStockById(Long id);
+    Stock saveStock(Stock stock);
 }

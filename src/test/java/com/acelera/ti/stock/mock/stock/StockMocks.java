@@ -16,6 +16,14 @@ public class StockMocks {
                 .sellprice(10000.00)
                 .build();
     }
+    public static Stock getStockEmpty(Long id) {
+        return Stock.builder()
+                .id(id)
+                .product(ProductMocks.getProduct(id))
+                .amount(0)
+                .sellprice(10000.00)
+                .build();
+    }
     public static List<Stock> getStocks(int size) {
         List<Stock> stocks = new ArrayList<>();
         for (int i = 1; i <= size; i++) {

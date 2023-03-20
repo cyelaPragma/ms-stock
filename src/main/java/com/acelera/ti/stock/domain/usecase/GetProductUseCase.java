@@ -1,12 +1,9 @@
 package com.acelera.ti.stock.domain.usecase;
 
-import com.acelera.ti.stock.domain.model.exceptions.NotExistProductsException;
 import com.acelera.ti.stock.domain.model.exceptions.ProductNotFoundException;
 import com.acelera.ti.stock.domain.model.gateways.services.ProductServices;
 import com.acelera.ti.stock.domain.model.model.product.Product;
 import lombok.RequiredArgsConstructor;
-
-import java.util.List;
 
 @RequiredArgsConstructor
 public class GetProductUseCase {
