@@ -23,8 +23,8 @@
 hs_err_pid*
 
 #intellij IDE
-./idea
-./idea/*
+/.idea
+/build
 
 #Mac
 .DS_Store
