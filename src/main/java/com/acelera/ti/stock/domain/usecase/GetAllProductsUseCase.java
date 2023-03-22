@@ -13,7 +13,7 @@ public class GetAllProductsUseCase {
 
     public List<Product> action() {
         List<Product> products = productServices.getAllProducts();
-        if (products.isEmpty()) {
+        if (products == null || products.isEmpty()) {
             throw new NotExistProductsException();
         }
         return products;

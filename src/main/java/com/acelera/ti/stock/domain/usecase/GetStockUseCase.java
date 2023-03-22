@@ -1,21 +1,22 @@
 package com.acelera.ti.stock.domain.usecase;
 
-import com.acelera.ti.stock.domain.model.exceptions.NotExistStocksException;
 import com.acelera.ti.stock.domain.model.exceptions.StockEmptyException;
+import com.acelera.ti.stock.domain.model.exceptions.StockNotFoundException;
 import com.acelera.ti.stock.domain.model.gateways.repositories.StockRepository;
 import com.acelera.ti.stock.domain.model.model.stock.Stock;
 import lombok.RequiredArgsConstructor;
 
-import java.util.List;
-
 @RequiredArgsConstructor
-public class GetAllStockUseCase {
+public class GetStockUseCase {
     private final StockRepository stockRepository;
-    public List<Stock> action() {
-        List<Stock> stocks = stockRepository.getAllStock();
-        if (stocks == null || stocks.isEmpty()) {
-            throw new NotExistStocksException();
+    public Stock action(Long id) {
+        Stock stock = stockRepository.getStockById(id);
+        if (stock == null) {
+            throw new StockNotFoundException();
         }
-        return stocks;
+        if (stock.getAmount() == 0) {
+            throw new StockEmptyException();
+        }
+        return stock;
     }
 }
