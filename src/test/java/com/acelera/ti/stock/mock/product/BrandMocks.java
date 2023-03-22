@@ -6,7 +6,7 @@ public class BrandMocks {
     public static Brand getBrand(Long id) {
         return Brand.builder()
                 .id(id)
-                .name("marca " + id)
+                .name("marca")
                 .description("descripción " + id)
                 .build();
     }

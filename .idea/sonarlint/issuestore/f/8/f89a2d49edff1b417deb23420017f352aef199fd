@@ -1,0 +1,7 @@
+
+x
+java:S1128"[Remove this unused import 'org.springframework.boot.autoconfigure.ImportAutoConfiguration'.(­ƒ¬É8û×ÏÛï0
+ƒ
+java:S1128"aRemove this unused import 'org.springframework.cloud.commons.httpclient.HttpClientConfiguration'.(½ëÐáþÿÿÿÿ8³×½Ûï0
+y
+java:S1128"WRemove this unused import 'org.springframework.cloud.openfeign.FeignAutoConfiguration'.(¬Ù‚‰øÿÿÿÿ8û×ÏÛï0

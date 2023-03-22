@@ -5,6 +5,7 @@ import com.acelera.ti.stock.mock.product.ProductMocks;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class StockMocks {
     public static Stock getStock(Long id) {
@@ -22,5 +23,12 @@ public class StockMocks {
             stocks.add(getStock((long) i));
         }
         return stocks;
+    }
+
+    public static List<Stock> filterProductByPrice(Double price) {
+        List<Stock> stocks = getStocks(5);
+        return stocks.stream()
+                .filter(s -> s.getSellprice().equals(price))
+                .collect(Collectors.toList());
     }
 }

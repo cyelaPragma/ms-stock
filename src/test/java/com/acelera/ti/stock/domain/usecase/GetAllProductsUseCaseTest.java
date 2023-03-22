@@ -4,7 +4,6 @@ import com.acelera.ti.stock.domain.model.exceptions.NotExistProductsException;
 import com.acelera.ti.stock.domain.model.exceptions.TechnicalException;
 import com.acelera.ti.stock.domain.model.gateways.services.ProductServices;
 import com.acelera.ti.stock.domain.model.model.product.Product;
-import com.acelera.ti.stock.infrastructure.drivenadapters.productservice.ProductFeignClient;
 import com.acelera.ti.stock.mock.product.ProductMocks;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -33,20 +32,20 @@ class GetAllProductsUseCaseTest {
     @Test
     void readAllProductsSuccess() {
         when(productServices.getAllProducts()).thenReturn(ProductMocks.getProducts(5));
-        List<Product> productsResponse = getAllProductsUseCase.getAllProducts();
-        assertTrue(productsResponse.size()>0);
+        List<Product> productsResponse = getAllProductsUseCase.action();
+        assertTrue(productsResponse.size() > 0);
         assertArrayEquals(ProductMocks.getProducts(5).toArray(), productsResponse.toArray());
     }
 
     @Test
     void readAllProductsEmpty() {
-        when(productServices.getAllProducts()).thenReturn(ProductMocks.getProducts(0));
-        assertThrows(NotExistProductsException.class, () -> getAllProductsUseCase.getAllProducts());
+        when(productServices.getAllProducts()).thenReturn(ProductMocks.getProducts(2));
+        assertThrows(NotExistProductsException.class, () -> getAllProductsUseCase.action());
     }
 
     @Test
     void readAllProductsTechnicalError() {
         doThrow(TechnicalException.class).when(productServices).getAllProducts();
-        assertThrows(TechnicalException.class, () -> getAllProductsUseCase.getAllProducts());
+        assertThrows(TechnicalException.class, () -> getAllProductsUseCase.action());
     }
 }

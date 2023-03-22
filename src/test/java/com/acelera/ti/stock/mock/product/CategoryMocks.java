@@ -6,7 +6,7 @@ public class CategoryMocks {
     public static Category getCategory(Long id) {
         return Category.builder()
                 .id(id)
-                .name("categoria " + id)
+                .name("categoria")
                 .description("descripción " + id)
                 .build();
     }

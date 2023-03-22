@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.acelera.ti.stock.domain.usecase.orchestrator.FilterProductsByStockUseCaseTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-03-22T00:19:27" hostname="LAPTOP-M11UP4GC" time="0.136">
+  <properties/>
+  <testcase name="filterProductSuccess()" classname="com.acelera.ti.stock.domain.usecase.orchestrator.FilterProductsByStockUseCaseTest" time="0.136"/>
+  <system-out><![CDATA[19:19:21.682 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Neither @ContextConfiguration nor @ContextHierarchy found for test class [FilterProductsByStockUseCaseTest]: using SpringBootContextLoader
+19:19:21.693 [Test worker] DEBUG org.springframework.test.context.support.AbstractContextLoader - Could not detect default resource locations for test class [com.acelera.ti.stock.domain.usecase.orchestrator.FilterProductsByStockUseCaseTest]: no resource found for suffixes {-context.xml, Context.groovy}.
+19:19:21.695 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.acelera.ti.stock.domain.usecase.orchestrator.FilterProductsByStockUseCaseTest]: FilterProductsByStockUseCaseTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+19:19:21.772 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Using ContextCustomizers for test class [FilterProductsByStockUseCaseTest]: [DisableObservabilityContextCustomizer, PropertyMappingContextCustomizer, Customizer, ExcludeFilterContextCustomizer, DuplicateJsonObjectContextCustomizer, MockitoContextCustomizer, TestRestTemplateContextCustomizer]
+19:19:21.999 [Test worker] DEBUG org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider - Identified candidate component class: file [C:\aceleraTiStock_2\ms-stock\build\classes\java\main\com\acelera\ti\stock\StockApplication.class]
+19:19:22.004 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.acelera.ti.stock.StockApplication for test class com.acelera.ti.stock.domain.usecase.orchestrator.FilterProductsByStockUseCaseTest
+19:19:22.272 [Test worker] DEBUG org.springframework.test.context.util.TestContextSpringFactoriesUtils - Skipping candidate TestExecutionListener [org.springframework.test.context.transaction.TransactionalTestExecutionListener] due to a missing dependency. Specify custom TestExecutionListener classes or make the default TestExecutionListener classes and their required dependencies available. Offending class: [org/springframework/transaction/interceptor/TransactionAttributeSource]
+19:19:22.276 [Test worker] DEBUG org.springframework.test.context.util.TestContextSpringFactoriesUtils - Skipping candidate TestExecutionListener [org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener] due to a missing dependency. Specify custom TestExecutionListener classes or make the default TestExecutionListener classes and their required dependencies available. Offending class: [org/springframework/transaction/interceptor/TransactionAttribute]
+19:19:22.282 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Using TestExecutionListeners for test class [FilterProductsByStockUseCaseTest]: [ServletTestExecutionListener, DirtiesContextBeforeModesTestExecutionListener, ApplicationEventsTestExecutionListener, MockitoTestExecutionListener, DependencyInjectionTestExecutionListener, DirtiesContextTestExecutionListener, EventPublishingTestExecutionListener, RestDocsTestExecutionListener, MockRestServiceServerResetTestExecutionListener, MockMvcPrintOnlyOnFailureTestExecutionListener, WebDriverTestExecutionListener, MockWebServiceServerTestExecutionListener, ResetMocksTestExecutionListener]
+19:19:22.286 [Test worker] DEBUG org.springframework.test.context.support.AbstractDirtiesContextTestExecutionListener - Before test class: class [FilterProductsByStockUseCaseTest], class annotated with @DirtiesContext [false] with mode [null]
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.0.4)
+
+2023-03-21T19:19:23.512-05:00  INFO 15652 --- [    Test worker] s.d.u.o.FilterProductsByStockUseCaseTest : Starting FilterProductsByStockUseCaseTest using Java 17.0.6 with PID 15652 (started by AdminJ in C:\aceleraTiStock_2\ms-stock)
+2023-03-21T19:19:23.516-05:00  INFO 15652 --- [    Test worker] s.d.u.o.FilterProductsByStockUseCaseTest : No active profile set, falling back to 1 default profile: "default"
+2023-03-21T19:19:26.384-05:00  INFO 15652 --- [    Test worker] s.d.u.o.FilterProductsByStockUseCaseTest : Started FilterProductsByStockUseCaseTest in 3.946 seconds (process running for 7.676)
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

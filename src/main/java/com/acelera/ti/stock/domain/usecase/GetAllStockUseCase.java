@@ -11,9 +11,9 @@ import java.util.List;
 public class GetAllStockUseCase {
     private final StockRepository stockRepository;
 
-    public List<Stock> action() {
+    public List<Stock> getAllStocks() {
         List<Stock> stocks = stockRepository.getAllStock();
-        if (stocks.isEmpty()){
+        if (stocks.isEmpty()) {
             throw new NotExistProductsException();
         }
         return stocks;
