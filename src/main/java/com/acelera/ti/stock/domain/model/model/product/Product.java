@@ -6,6 +6,7 @@ import lombok.*;
 @Getter
 @Setter
 @EqualsAndHashCode
+@ToString
 public class Product {
     private Long id;
     private String name;

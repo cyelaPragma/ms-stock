@@ -5,7 +5,6 @@ import com.acelera.ti.stock.mock.product.ProductMocks;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class StockMocks {
     public static Stock getStock(Long id) {
@@ -13,7 +12,7 @@ public class StockMocks {
                 .id(id)
                 .product(ProductMocks.getProduct(id))
                 .amount(10)
-                .sellprice(10000.00)
+                .sellPrice(10000.00 + id)
                 .build();
     }
 
@@ -22,22 +21,46 @@ public class StockMocks {
                 .id(id)
                 .product(ProductMocks.getProduct(id))
                 .amount(0)
-                .sellprice(10000.00)
+                .sellPrice(10000.00)
                 .build();
     }
 
     public static List<Stock> getStocks(int size) {
         List<Stock> stocks = new ArrayList<>();
-            for (int i = 1; i <= size; i++) {
+        for (int i = 1; i <= size; i++) {
             stocks.add(getStock((long) i));
         }
         return stocks;
     }
 
-    public static List<Stock> filterProductByPrice(Double price) {
-        List<Stock> stocks = getStocks(5);
-        return stocks.stream()
-                .filter(s -> s.getSellprice().equals(price))
-                .collect(Collectors.toList());
+    public static List<Stock> getStockFilters() {
+        List<Stock> stocks = new ArrayList<>();
+        stocks.add(
+                Stock.builder()
+                        .id(1L)
+                        .amount(10)
+                        .sellPrice(1000.00)
+                        .product(ProductMocks.getProduct(1L))
+                        .build()
+        );
+        stocks.add(
+                Stock.builder()
+                        .id(2L)
+                        .amount(10)
+                        .sellPrice(1100.00)
+                        .product(ProductMocks.getProduct(2L))
+                        .build()
+        );
+        stocks.add(
+                Stock.builder()
+                        .id(3L)
+                        .amount(10)
+                        .sellPrice(1200.00)
+                        .product(ProductMocks.getProduct(3L))
+                        .build()
+        );
+
+        return stocks;
     }
 }
+

@@ -4,6 +4,7 @@ import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -12,9 +13,10 @@ import java.util.List;
 @Getter
 @Setter
 @EqualsAndHashCode
+@ToString
 public class Provisioning {
     private Long id;
     private Long providerId;
     private LocalDate sourcingDate;
-    private List<ProvisiongProduct> products;
+    private List<ProvisioningProduct> products;
 }

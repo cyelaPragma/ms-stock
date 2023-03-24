@@ -4,12 +4,14 @@ import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Builder
 @Setter
 @Getter
 @EqualsAndHashCode
-public class ProvisiongProduct {
+@ToString
+public class ProvisioningProduct {
     private Long id;
     private Stock stock;
     private int amount;
