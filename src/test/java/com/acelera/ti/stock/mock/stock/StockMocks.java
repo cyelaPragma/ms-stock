@@ -4,6 +4,7 @@ import com.acelera.ti.stock.domain.model.model.stock.Stock;
 import com.acelera.ti.stock.mock.product.ProductMocks;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class StockMocks {
@@ -34,33 +35,18 @@ public class StockMocks {
     }
 
     public static List<Stock> getStockFilters() {
-        List<Stock> stocks = new ArrayList<>();
-        stocks.add(
-                Stock.builder()
-                        .id(1L)
-                        .amount(10)
-                        .sellPrice(1000.00)
-                        .product(ProductMocks.getProduct(1L))
-                        .build()
-        );
-        stocks.add(
-                Stock.builder()
-                        .id(2L)
-                        .amount(10)
-                        .sellPrice(1100.00)
-                        .product(ProductMocks.getProduct(2L))
-                        .build()
-        );
-        stocks.add(
-                Stock.builder()
-                        .id(3L)
-                        .amount(10)
-                        .sellPrice(1200.00)
-                        .product(ProductMocks.getProduct(3L))
-                        .build()
-        );
+        return Arrays.asList(
+                Stock.builder().id(1L).product(ProductMocks.getProduct(1L)).sellPrice(10001.0).amount(10).build(),
+                Stock.builder().id(2L).product(ProductMocks.getProduct(2L)).sellPrice(10002.0).amount(10).build(),
+                Stock.builder().id(3L).product(ProductMocks.getProduct(3L)).sellPrice(10003.0).amount(10).build(),
+                Stock.builder().id(4L).product(ProductMocks.getProduct(4L)).sellPrice(10004.0).amount(10).build(),
+                Stock.builder().id(5L).product(ProductMocks.getProduct(5L)).sellPrice(10005.0).amount(10).build(),
+                Stock.builder().id(6L).product(ProductMocks.getProduct(6L)).sellPrice(10006.0).amount(10).build(),
+                Stock.builder().id(7L).product(ProductMocks.getProduct(7L)).sellPrice(10007.0).amount(10).build(),
+                Stock.builder().id(8L).product(ProductMocks.getProduct(8L)).sellPrice(10008.0).amount(10).build(),
+                Stock.builder().id(9L).product(ProductMocks.getProduct(9L)).sellPrice(10009.0).amount(10).build()
 
-        return stocks;
+        );
     }
 }
 

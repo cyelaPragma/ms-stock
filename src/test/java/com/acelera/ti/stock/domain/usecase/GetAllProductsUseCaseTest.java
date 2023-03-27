@@ -39,7 +39,7 @@ class GetAllProductsUseCaseTest {
 
     @Test
     void readAllProductsEmpty() {
-        when(productServices.getAllProducts()).thenReturn(ProductMocks.getProducts(2));
+        when(productServices.getAllProducts()).thenReturn(ProductMocks.getProducts(0));
         assertThrows(NotExistProductsException.class, () -> getAllProductsUseCase.action());
     }
 

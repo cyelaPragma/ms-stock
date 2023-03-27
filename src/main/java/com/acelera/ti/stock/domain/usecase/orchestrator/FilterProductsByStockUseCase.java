@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -41,12 +42,9 @@ public class FilterProductsByStockUseCase {
             }
 
             return stocks.stream().filter(filters.getFilter()).toList();
-        }catch (StockNotFoundException | TechnicalException e){
+        }catch (StockNotFoundException | TechnicalException e) {
             log.error(e.getMessage());
-            return new ArrayList<>();
-        } finally {
-            log.error("Error inesperado ");
-            return new ArrayList<>();
+            return Collections.emptyList();
         }
     }
 
