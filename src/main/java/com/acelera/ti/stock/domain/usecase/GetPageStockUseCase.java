@@ -2,10 +2,13 @@ package com.acelera.ti.stock.domain.usecase;
 
 import com.acelera.ti.stock.domain.model.exceptions.NotExistStockPageException;
 import com.acelera.ti.stock.domain.model.model.stock.Stock;
+
+import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class GetPageStockUseCase {
-    public List<Stock> action(List<Stock> stock, int pageNumber, int pageSize) {
+    public List<Stock> action(Collection<Stock> stock, int pageNumber, int pageSize) {
         if(pageSize == 0) {
             pageSize = 20;
         }
@@ -15,12 +18,12 @@ public class GetPageStockUseCase {
         return stock.stream()
                 .skip((long) pageNumber * pageSize)
                 .limit(pageSize)
-                .toList();
+                .collect(Collectors.toList());
     }
 
-    private static boolean isPageNumberExist(int pageNumber, int pageSize, int stock) {
-        int totalPages = stock/pageSize;
-        if(stock%pageSize != 0){
+    private static boolean isPageNumberExist(int pageNumber, int pageSize, int totalStocks) {
+        int totalPages = totalStocks/pageSize;
+        if(totalStocks % pageSize != 0){
             totalPages++;
         }
         return pageNumber <= totalPages;

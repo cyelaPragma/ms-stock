@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Slf4j
@@ -27,12 +28,12 @@ public class FilterProductsByStockUseCase {
             ListParametersFilter filters = new ListParametersFilter();
 
             if (filterParameter.getBrand() != null && !filterParameter.getBrand().isEmpty()) {
-                List<String> brands = filterParameter.getBrand().stream().map(Brand::getName).toList();
+                List<String> brands = filterParameter.getBrand().stream().map(Brand::getName).collect(Collectors.toList());
                 filters.addFilter(s -> brands.contains(s.getProduct().getBrand().getName()));
             }
 
             if (filterParameter.getCategory() != null && !filterParameter.getCategory().isEmpty()) {
-                List<String> categories = filterParameter.getCategory().stream().map(Category::getName).toList();
+                List<String> categories = filterParameter.getCategory().stream().map(Category::getName).collect(Collectors.toList());
                 filters.addFilter(s -> categories.contains(s.getProduct().getCategory().getName()));
             }
 
@@ -41,7 +42,7 @@ public class FilterProductsByStockUseCase {
                         && s.getSellPrice() <= filterParameter.getMaxPrice());
             }
 
-            return stocks.stream().filter(filters.getFilter()).toList();
+            return stocks.stream().filter(filters.getFilter()).collect(Collectors.toList());
         }catch (StockNotFoundException | TechnicalException e) {
             log.error(e.getMessage());
             return Collections.emptyList();
