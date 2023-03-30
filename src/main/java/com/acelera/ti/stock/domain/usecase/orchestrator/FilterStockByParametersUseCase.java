@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Slf4j
-public class FilterProductsByStockUseCase {
+public class FilterStockByParametersUseCase {
 
     private final GetAllStockUseCase getAllStockUseCase;
 

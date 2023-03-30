@@ -15,5 +15,5 @@ public interface ProductFeignClient {
     List<Product> getAllProducts();
 
     @GetMapping(value = "/products/{idProduct}", consumes = MediaType.APPLICATION_JSON_VALUE)
-    Product findProductById(@PathVariable("idProduct") Long idProduct );
+    Product findProductById(@PathVariable("idProduct") Long idProduct);
 }

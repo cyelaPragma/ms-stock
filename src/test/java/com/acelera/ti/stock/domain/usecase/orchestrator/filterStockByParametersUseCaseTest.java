@@ -19,16 +19,16 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @SpringBootTest
-class FilterProductsByStockUseCaseTest {
+class filterStockByParametersUseCaseTest {
     @InjectMocks
-    private FilterProductsByStockUseCase filterProductsByStockUseCase;
+    private FilterStockByParametersUseCase filterStockByParametersUseCase;
 
     @Mock
     private GetAllStockUseCase getAllStockUseCase;
 
     @BeforeEach
     void setUp() {
-        filterProductsByStockUseCase = new FilterProductsByStockUseCase(getAllStockUseCase);
+        filterStockByParametersUseCase = new FilterStockByParametersUseCase(getAllStockUseCase);
     }
 
     @Test
@@ -42,7 +42,7 @@ class FilterProductsByStockUseCaseTest {
         when(getAllStockUseCase.action()).thenReturn(StockMocks.getStockFilters());
 
         // Ejecutar
-        List<Stock> actualFilterResult = filterProductsByStockUseCase.action(filterParameters);
+        List<Stock> actualFilterResult = filterStockByParametersUseCase.action(filterParameters);
 
         // Verificar
         assertEquals(expectedStocks, actualFilterResult);
@@ -57,7 +57,7 @@ class FilterProductsByStockUseCaseTest {
 
         // Ejecutar
         when(getAllStockUseCase.action()).thenReturn(StockMocks.getStockFilters());
-        List<Stock> actualFilterResult = filterProductsByStockUseCase.action(filterParameters);
+        List<Stock> actualFilterResult = filterStockByParametersUseCase.action(filterParameters);
 
         // Verificar
         assertTrue(actualFilterResult.isEmpty(), "El resultado del filtro debe estar vacío");
@@ -78,7 +78,7 @@ class FilterProductsByStockUseCaseTest {
 
         // Ejecutar
         when(getAllStockUseCase.action()).thenReturn(StockMocks.getStockFilters());
-        List<Stock> actualFilterResult = filterProductsByStockUseCase.action(filterParameters);
+        List<Stock> actualFilterResult = filterStockByParametersUseCase.action(filterParameters);
 
         // Verificar
         assertEquals(expectedStocks, actualFilterResult,
@@ -98,7 +98,7 @@ class FilterProductsByStockUseCaseTest {
 
         //Ejecutar
         when(getAllStockUseCase.action()).thenReturn(StockMocks.getStockFilters());
-        List<Stock> actualFilterResult = filterProductsByStockUseCase.action(filterParameters);
+        List<Stock> actualFilterResult = filterStockByParametersUseCase.action(filterParameters);
 
         //Validar
         assertEquals(expectedStocks, actualFilterResult,
@@ -118,7 +118,7 @@ class FilterProductsByStockUseCaseTest {
 
         //Ejecutar
         when(getAllStockUseCase.action()).thenReturn(StockMocks.getStockFilters());
-        List<Stock> actualFilterResult = filterProductsByStockUseCase.action(filterParameters);
+        List<Stock> actualFilterResult = filterStockByParametersUseCase.action(filterParameters);
 
         //Validar
         assertEquals(expectedStocks, actualFilterResult,
@@ -137,7 +137,7 @@ class FilterProductsByStockUseCaseTest {
 
         //Ejecutar
         when(getAllStockUseCase.action()).thenReturn(StockMocks.getStockFilters());
-        List<Stock> actualFilterResult = filterProductsByStockUseCase.action(filterParameters);
+        List<Stock> actualFilterResult = filterStockByParametersUseCase.action(filterParameters);
 
         //Validar
         assertEquals(expectedStocks, actualFilterResult,
@@ -159,7 +159,7 @@ class FilterProductsByStockUseCaseTest {
         when(getAllStockUseCase.action()).thenReturn(StockMocks.getStockFilters());
         // Ejecutar
 
-        List<Stock> actualFilterResult = filterProductsByStockUseCase.action(filterParameters);
+        List<Stock> actualFilterResult = filterStockByParametersUseCase.action(filterParameters);
 
         // Validar
         assertEquals(expectedStocks, actualFilterResult,
@@ -177,7 +177,7 @@ class FilterProductsByStockUseCaseTest {
 
         //Ejecutar
         when(getAllStockUseCase.action()).thenReturn(StockMocks.getStockFilters());
-        List<Stock> actualFilterResult = filterProductsByStockUseCase.action(filterParameters);
+        List<Stock> actualFilterResult = filterStockByParametersUseCase.action(filterParameters);
 
         //Validar
         assertEquals(expectedStocks, actualFilterResult,

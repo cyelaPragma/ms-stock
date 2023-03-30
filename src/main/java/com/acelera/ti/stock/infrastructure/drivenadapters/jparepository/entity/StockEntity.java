@@ -34,12 +34,4 @@ public class StockEntity {
 
     @Column(name = "AMOUNT_STOCK")
     private int amount;
-
-    // validación de datos para el atributo "amount"
-    public void setAmount(int amount) {
-        if (amount < 0) {
-            throw new IllegalArgumentException("La cantidad no puede ser negativa");
-        }
-        this.amount = amount;
-    }
 }

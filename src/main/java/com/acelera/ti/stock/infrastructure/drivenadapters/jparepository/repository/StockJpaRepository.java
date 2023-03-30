@@ -4,4 +4,5 @@ import com.acelera.ti.stock.infrastructure.drivenadapters.jparepository.entity.S
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface StockJpaRepository extends JpaRepository<StockEntity, Long> {
+    //  List<StockEntity> finAllStocks(Pageable pageable);
 }

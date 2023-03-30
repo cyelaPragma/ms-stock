@@ -21,7 +21,7 @@ public class ProductController {
     private final GetProductUseCase getProductUseCase;
 
     @GetMapping()
-    public ResponseEntity<List<Product>> getAllProducts(){
+    public ResponseEntity<List<Product>> getAllProducts() {
         List<Product> products = getAllProductsUseCase.action();
         HttpStatus status = products.isEmpty() ? HttpStatus.NO_CONTENT : HttpStatus.OK;
         return new ResponseEntity<>(products, status);

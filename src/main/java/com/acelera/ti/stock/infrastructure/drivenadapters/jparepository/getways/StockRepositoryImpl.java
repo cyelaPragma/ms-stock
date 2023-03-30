@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 @AllArgsConstructor
@@ -24,21 +25,22 @@ public class StockRepositoryImpl implements StockRepository {
     public List<Stock> getAllStock() {
         List<Stock> stocks = stockMapper.entitiesToStocks(stockJpaRepository.findAll());
         List<Stock> stockResponse = new ArrayList<>();
-
         for (Stock stock : stocks) {
-            Product product = productServices.getProductById(stock.getProduct().getId());
-            stock.setProduct(product);
+            Optional<Product> productOptional = getProductForStock(stock);
+            productOptional.ifPresent(stock::setProduct);
             stockResponse.add(stock);
         }
-
         return stockResponse;
     }
 
     @Override
     public Stock getStockById(Long id) {
-        StockEntity stockEntity = stockJpaRepository.findById(id).orElse(null);
-        assert stockEntity != null;
-        return stockMapper.stockEntityToStock(stockEntity);
+        StockEntity foundStockEntity = stockJpaRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("No se encuentra un Stock con el id: " + id));
+        Stock stock = stockMapper.stockEntityToStock(foundStockEntity);
+        Optional<Product> productOptional = getProductForStock(stock);
+        productOptional.ifPresent(stock::setProduct);
+        return stock;
     }
 
     @Override
@@ -48,5 +50,12 @@ public class StockRepositoryImpl implements StockRepository {
         }
         StockEntity stockEntity = stockMapper.stockToStockEntity(stock);
         return stockMapper.stockEntityToStock(stockJpaRepository.save(stockEntity));
+    }
+
+    private Optional<Product> getProductForStock(Stock stock) {
+        if (stock.getProduct() == null) {
+            return Optional.empty();
+        }
+        return Optional.of(productServices.getProductById(stock.getProduct().getId()));
     }
 }

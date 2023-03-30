@@ -2,13 +2,12 @@ package com.acelera.ti.stock.infrastructure.drivenadapters.jparepository.mapper;
 
 import com.acelera.ti.stock.domain.model.model.stock.Stock;
 import com.acelera.ti.stock.infrastructure.drivenadapters.jparepository.entity.StockEntity;
-import com.acelera.ti.stock.infrastructure.drivenadapters.productservice.mapper.ProductMapper;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
 import java.util.List;
 
-@Mapper(componentModel = "spring", uses = {ProductMapper.class})
+@Mapper(componentModel = "spring")
 public interface StockMapper {
     @Mapping(source = "productId", target = "product.id")
     Stock stockEntityToStock(StockEntity stockEntity);
@@ -17,6 +16,4 @@ public interface StockMapper {
     StockEntity stockToStockEntity(Stock stock);
 
     List<Stock> entitiesToStocks(List<StockEntity> stockEntities);
-
-    List<StockEntity> stocksToEntities(List<Stock> stocks);
 }
