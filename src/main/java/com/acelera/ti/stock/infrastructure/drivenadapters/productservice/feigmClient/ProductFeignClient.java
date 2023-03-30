@@ -1,4 +1,4 @@
-package com.acelera.ti.stock.infrastructure.drivenadapters.productservice;
+package com.acelera.ti.stock.infrastructure.drivenadapters.productservice.feigmClient;
 
 import com.acelera.ti.stock.domain.model.model.product.Product;
 import org.springframework.cloud.openfeign.FeignClient;
