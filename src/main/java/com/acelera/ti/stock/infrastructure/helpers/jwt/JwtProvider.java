@@ -9,7 +9,6 @@ import io.jsonwebtoken.security.Keys;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
-
 import java.security.Key;
 
 @Component
@@ -45,6 +44,8 @@ public class JwtProvider {
             log.error("token expirado");
         } catch (IllegalArgumentException e) {
             log.error("token vacío");
+        } finally {
+            log.error("no se pudo validar el token");
         }
         return false;
     }

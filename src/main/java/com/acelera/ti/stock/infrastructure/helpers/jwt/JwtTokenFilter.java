@@ -34,6 +34,7 @@ public class JwtTokenFilter extends OncePerRequestFilter {
         try {
             String token = getToken(req);
             if (token != null && jwtProvider.validateToken(token) && jwtProvider.getNombreUsuarioFromToken(token) != null) {
+                System.out.println("valida token");
                 UserDetails userDetails = getUserDetails(token);
                 UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
                         userDetails, null, userDetails.getAuthorities()
@@ -41,11 +42,11 @@ public class JwtTokenFilter extends OncePerRequestFilter {
                 authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(req));
                 SecurityContextHolder.getContext().setAuthentication(authToken);
             }
+            filterChain.doFilter(req, res);
         } catch (Exception e) {
             log.error("fail en el método doFilter " + e);
             res.sendError(HttpServletResponse.SC_UNAUTHORIZED, e.getMessage());
         }
-        filterChain.doFilter(req, res);
     }
 
     private UserDetails getUserDetails(String token) {
