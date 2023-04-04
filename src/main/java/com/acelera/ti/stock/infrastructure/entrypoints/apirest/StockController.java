@@ -1,6 +1,6 @@
 package com.acelera.ti.stock.infrastructure.entrypoints.apirest;
 
-import com.acelera.ti.stock.domain.model.model.stock.FilterParameters;
+import com.acelera.ti.stock.domain.model.model.parameters.FilterParameters;
 import com.acelera.ti.stock.domain.model.model.stock.Stock;
 import com.acelera.ti.stock.domain.usecase.GetAllStockUseCase;
 import com.acelera.ti.stock.domain.usecase.GetPageStockUseCase;
@@ -51,8 +51,9 @@ public class StockController {
     }
 
     @PostMapping("/filter")
-    public ResponseEntity<List<Stock>> filterStockByParameters(@RequestBody FilterParameters filterParameters) {
-        List<Stock> stockList = filterStockByParameters.action(filterParameters);
+    public ResponseEntity<List<Stock>> filterStockByParameters(
+            @RequestBody FilterParameters filterParameters,@RequestParam int page, @RequestParam int size) {
+        List<Stock> stockList = filterStockByParameters.action(filterParameters, page, size);
         HttpStatus status = stockList.isEmpty() ? HttpStatus.NO_CONTENT : HttpStatus.OK;
         return ResponseEntity.status(status).body(stockList);
     }

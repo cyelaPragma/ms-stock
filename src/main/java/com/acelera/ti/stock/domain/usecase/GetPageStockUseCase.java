@@ -9,10 +9,11 @@ import java.util.stream.Collectors;
 
 public class GetPageStockUseCase {
     public List<Stock> action(Collection<Stock> stock, int pageNumber, int pageSize) {
-        if(pageSize == 0) {
+        if (pageSize == 0) {
             pageSize = 20;
         }
-        if(!isPageNumberExist(pageNumber,pageSize,stock.size())) {
+
+        if (stock == null || !isPageNumberExist(pageNumber, pageSize, stock.size())) {
             throw new NotExistStockPageException();
         }
         return stock.stream()
@@ -22,8 +23,8 @@ public class GetPageStockUseCase {
     }
 
     private static boolean isPageNumberExist(int pageNumber, int pageSize, int totalStocks) {
-        int totalPages = totalStocks/pageSize;
-        if(totalStocks % pageSize != 0){
+        int totalPages = totalStocks / pageSize;
+        if (totalStocks % pageSize != 0) {
             totalPages++;
         }
         return pageNumber <= totalPages;

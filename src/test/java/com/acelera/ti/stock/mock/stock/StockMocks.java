@@ -44,7 +44,8 @@ public class StockMocks {
                 Stock.builder().id(6L).product(ProductMocks.getProduct(6L)).sellPrice(10006.0).amount(10).build(),
                 Stock.builder().id(7L).product(ProductMocks.getProduct(7L)).sellPrice(10007.0).amount(10).build(),
                 Stock.builder().id(8L).product(ProductMocks.getProduct(8L)).sellPrice(10008.0).amount(10).build(),
-                Stock.builder().id(9L).product(ProductMocks.getProduct(9L)).sellPrice(10009.0).amount(10).build()
+                Stock.builder().id(9L).product(ProductMocks.getProduct(9L)).sellPrice(10009.0).amount(10).build(),
+                Stock.builder().id(10L).product(ProductMocks.getProduct(10L)).sellPrice(10010.0).amount(10).build()
 
         );
     }

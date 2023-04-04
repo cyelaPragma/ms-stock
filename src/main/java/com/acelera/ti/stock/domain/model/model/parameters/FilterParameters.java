@@ -1,4 +1,4 @@
-package com.acelera.ti.stock.domain.model.model.stock;
+package com.acelera.ti.stock.domain.model.model.parameters;
 
 import com.acelera.ti.stock.domain.model.model.product.Brand;
 import com.acelera.ti.stock.domain.model.model.product.Category;

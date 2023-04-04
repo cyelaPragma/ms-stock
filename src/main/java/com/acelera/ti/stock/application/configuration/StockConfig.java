@@ -52,7 +52,8 @@ public class StockConfig {
     }
 
     @Bean
-    public FilterStockByParametersUseCase filterProductsByStockUseCase(GetAllStockUseCase getAllStockUseCase){
-        return new FilterStockByParametersUseCase(getAllStockUseCase);
+    public FilterStockByParametersUseCase filterProductsByStockUseCase(
+            GetAllStockUseCase getAllStockUseCase, GetPageStockUseCase getPageStockUseCase){
+        return new FilterStockByParametersUseCase(getAllStockUseCase, getPageStockUseCase);
     }
 }

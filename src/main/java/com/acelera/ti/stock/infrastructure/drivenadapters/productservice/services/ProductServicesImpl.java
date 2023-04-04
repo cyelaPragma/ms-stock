@@ -18,6 +18,7 @@ public class ProductServicesImpl implements ProductServices {
         return productFeignClient.getAllProducts();
     }
 
+    @Override
     public Product getProductById(Long id) {
         return productFeignClient.findProductById(id);
     }

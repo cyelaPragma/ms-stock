@@ -1,12 +1,9 @@
 package com.acelera.ti.stock.domain.usecase;
 
-import com.acelera.ti.stock.domain.model.exceptions.NotExistProductsException;
 import com.acelera.ti.stock.domain.model.exceptions.NotExistStocksException;
 import com.acelera.ti.stock.domain.model.exceptions.TechnicalException;
 import com.acelera.ti.stock.domain.model.gateways.repositories.StockRepository;
-import com.acelera.ti.stock.domain.model.model.product.Product;
 import com.acelera.ti.stock.domain.model.model.stock.Stock;
-import com.acelera.ti.stock.mock.product.ProductMocks;
 import com.acelera.ti.stock.mock.stock.StockMocks;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -26,6 +23,7 @@ class GetAllStockUseCaseTest {
     private GetAllStockUseCase getAllStockUseCase;
     @Mock
     private StockRepository stockRepository;
+
 
     @BeforeEach
     void setUp() {

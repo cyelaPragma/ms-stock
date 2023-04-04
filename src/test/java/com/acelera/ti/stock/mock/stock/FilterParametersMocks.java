@@ -1,6 +1,6 @@
 package com.acelera.ti.stock.mock.stock;
 
-import com.acelera.ti.stock.domain.model.model.stock.FilterParameters;
+import com.acelera.ti.stock.domain.model.model.parameters.FilterParameters;
 import com.acelera.ti.stock.mock.product.BrandMocks;
 import com.acelera.ti.stock.mock.product.CategoryMocks;
 

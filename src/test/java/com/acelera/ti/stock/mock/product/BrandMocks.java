@@ -1,7 +1,6 @@
 package com.acelera.ti.stock.mock.product;
 
 import com.acelera.ti.stock.domain.model.model.product.Brand;
-import com.acelera.ti.stock.domain.model.model.stock.Stock;
 
 import java.util.ArrayList;
 import java.util.List;
