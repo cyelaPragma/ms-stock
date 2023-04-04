@@ -51,10 +51,6 @@ o
 ?src/test/java/com/acelera/ti/stock/mock/product/BrandMocks.java,4\c\4ce677afbb03d6e2faed1b852edd0035c6736901
 †
 Vsrc/main/java/com/acelera/ti/stock/domain/model/exceptions/StockNotFoundException.java,0\a\0a46a98950ac48da63d15a08b4859507c27f2bc4
-h
-8src/main/java/com/acelera/ti/stock/StockApplication.java,f\8\f89a2d49edff1b417deb23420017f352aef199fd
-<
-build.gradle,f\0\f07866736216be0ee2aba49e392191aeae700a35
 x
 Hsrc/main/java/com/acelera/ti/stock/domain/model/model/product/Brand.java,8\5\85fca5f378ba9ef17d26034a4017fd4f16d251db
 £
@@ -79,8 +75,6 @@ y
 Isrc/main/java/com/acelera/ti/stock/domain/usecase/GetAllStockUseCase.java,1\f\1f65c68fb24ddaeea717818159f2830894519415
 m
 =src/test/java/com/acelera/ti/stock/mock/stock/StockMocks.java,6\b\6b7ce26aa1445daa4e656065f58a9cd1e1475107
-~
-Nsrc/test/java/com/acelera/ti/stock/domain/usecase/GetPageStockUseCaseTest.java,0\e\0e9fe923bf7c777d1f1a6dd3d9c4e88e51d66cb8
 Š
 Zsrc/main/java/com/acelera/ti/stock/domain/model/gateways/repositories/StockRepository.java,f\6\f622e0a630f6bf6a860bc7a47c5fc5f4b6bcf336
 †
