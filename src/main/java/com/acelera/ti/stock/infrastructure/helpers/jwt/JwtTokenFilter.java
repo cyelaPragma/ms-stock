@@ -22,9 +22,9 @@ import java.util.List;
 @Slf4j
 @Component
 public class JwtTokenFilter extends OncePerRequestFilter {
+
     private List<String> excludedPrefixes = Arrays.asList("/auth/**", "/swagger-ui/**");
     private AntPathMatcher pathMatcher = new AntPathMatcher();
-
     @Autowired
     private JwtProvider jwtProvider;
 

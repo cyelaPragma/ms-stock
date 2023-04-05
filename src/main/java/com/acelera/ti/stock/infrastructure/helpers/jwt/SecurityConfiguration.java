@@ -16,10 +16,6 @@ public class SecurityConfiguration {
     @Autowired
     private JwtTokenFilter jwtTokenFilter;
 
-    public SecurityConfiguration(JwtTokenFilter jwtTokenFilter) {
-        this.jwtTokenFilter = jwtTokenFilter;
-    }
-
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
