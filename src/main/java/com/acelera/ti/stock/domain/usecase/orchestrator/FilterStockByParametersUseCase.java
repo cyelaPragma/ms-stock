@@ -7,7 +7,6 @@ import com.acelera.ti.stock.domain.model.model.stock.Stock;
 import com.acelera.ti.stock.domain.usecase.GetAllStockUseCase;
 import com.acelera.ti.stock.domain.usecase.GetPageStockUseCase;
 import lombok.RequiredArgsConstructor;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;

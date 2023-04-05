@@ -2,7 +2,6 @@ package com.acelera.ti.stock.mock.stock;
 
 import com.acelera.ti.stock.domain.model.model.stock.Stock;
 import com.acelera.ti.stock.mock.product.ProductMocks;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;

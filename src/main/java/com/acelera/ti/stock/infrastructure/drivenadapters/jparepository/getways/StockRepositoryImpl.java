@@ -9,7 +9,6 @@ import com.acelera.ti.stock.infrastructure.drivenadapters.jparepository.reposito
 import com.acelera.ti.stock.infrastructure.drivenadapters.productservice.services.ProductServicesImpl;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;

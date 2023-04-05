@@ -10,9 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
-
 import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.when;
@@ -23,7 +21,6 @@ class GetAllStockUseCaseTest {
     private GetAllStockUseCase getAllStockUseCase;
     @Mock
     private StockRepository stockRepository;
-
 
     @BeforeEach
     void setUp() {

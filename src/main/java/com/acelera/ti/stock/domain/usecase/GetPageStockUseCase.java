@@ -2,7 +2,6 @@ package com.acelera.ti.stock.domain.usecase;
 
 import com.acelera.ti.stock.domain.model.exceptions.NotExistStockPageException;
 import com.acelera.ti.stock.domain.model.model.stock.Stock;
-
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;

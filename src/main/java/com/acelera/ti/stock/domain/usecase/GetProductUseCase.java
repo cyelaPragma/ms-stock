@@ -9,12 +9,13 @@ import lombok.RequiredArgsConstructor;
 public class GetProductUseCase {
     private final ProductServices productServices;
 
-    public Product findProductById(Long id) {
-        Product product = productServices.getProductById(id);
+    public Product action(Long productId) {
+        Product product = productServices.getProductById(productId);
         if (product == null) {
             throw new ProductNotFoundException();
         }
         return product;
     }
 }
+
 

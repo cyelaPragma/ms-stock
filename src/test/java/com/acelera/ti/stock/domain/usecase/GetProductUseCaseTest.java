@@ -30,20 +30,20 @@ class GetProductUseCaseTest {
     @Test
     void readProductByIdSuccess() {
         when(productServices.getProductById(1L)).thenReturn(ProductMocks.getProduct(1L));
-        Product productResponse = readProductUseCase.findProductById(1L);
+        Product productResponse = readProductUseCase.action(1L);
         assertEquals(ProductMocks.getProduct(1L), productResponse);
     }
 
     @Test
     void readProductByIdNotFound() {
         when(productServices.getProductById(1L)).thenReturn(null);
-        assertThrows(ProductNotFoundException.class, () -> readProductUseCase.findProductById(1L));
+        assertThrows(ProductNotFoundException.class, () -> readProductUseCase.action(1L));
     }
 
     @Test
     void readProductByIdTechnicalError() {
         doThrow(TechnicalException.class).when(productServices).getProductById(1L);
-        assertThrows(TechnicalException.class, () -> readProductUseCase.findProductById(1L));
+        assertThrows(TechnicalException.class, () -> readProductUseCase.action(1L));
     }
 }
 
