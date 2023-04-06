@@ -7,10 +7,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(value="/tests")
+@RequestMapping(value = "/tests")
 public class TestController {
     @GetMapping("/v1")
-    public ResponseEntity<?> getTest(){
+    public ResponseEntity<?> getTest() {
         return new ResponseEntity<>("Test endpoint", HttpStatus.OK);
     }
 }

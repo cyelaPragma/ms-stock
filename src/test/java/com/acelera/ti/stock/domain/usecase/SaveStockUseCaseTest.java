@@ -9,7 +9,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.when;
 
@@ -25,11 +26,13 @@ class SaveStockUseCaseTest {
     void setUp() {
         saveStockUseCase = new SaveStockUseCase(stockRepository);
     }
+
     @Test
     void saveSuccess() {
         when(stockRepository.getStockById(1L)).thenReturn(StockMocks.getStock(1L));
         assertDoesNotThrow(() -> saveStockUseCase.action(StockMocks.getStock(1L)));
     }
+
     @Test
     void saveTechnicalError() {
         doThrow(TechnicalException.class).when(stockRepository).saveStock(StockMocks.getStock(1L));

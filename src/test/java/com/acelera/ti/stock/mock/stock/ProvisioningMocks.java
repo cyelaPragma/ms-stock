@@ -3,7 +3,6 @@ package com.acelera.ti.stock.mock.stock;
 import com.acelera.ti.stock.domain.model.model.stock.Provisioning;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 public class ProvisioningMocks {
     public static Provisioning getProvisioning(Long id) {

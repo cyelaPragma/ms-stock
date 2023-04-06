@@ -1,6 +1,5 @@
 package com.acelera.ti.stock.mock.stock;
 
-import com.acelera.ti.stock.domain.model.model.product.Product;
 import com.acelera.ti.stock.domain.model.model.stock.Stock;
 import com.acelera.ti.stock.mock.product.ProductMocks;
 
@@ -16,6 +15,7 @@ public class StockMocks {
                 .sellprice(10000.00)
                 .build();
     }
+
     public static Stock getStockEmpty(Long id) {
         return Stock.builder()
                 .id(id)
@@ -24,6 +24,7 @@ public class StockMocks {
                 .sellprice(10000.00)
                 .build();
     }
+
     public static List<Stock> getStocks(int size) {
         List<Stock> stocks = new ArrayList<>();
         for (int i = 1; i <= size; i++) {
@@ -32,3 +33,4 @@ public class StockMocks {
         return stocks;
     }
 }
+

@@ -1,7 +1,6 @@
 package com.acelera.ti.stock.mock.stock;
 
 import com.acelera.ti.stock.domain.model.model.stock.ProvisiongProduct;
-import com.acelera.ti.stock.domain.model.model.stock.Stock;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +14,7 @@ public class ProvisiongProductMocks {
                 .stock(StockMocks.getStock(id))
                 .build();
     }
+
     public static List<ProvisiongProduct> getProvisiongProducts(int size) {
         List<ProvisiongProduct> provisiongProducts = new ArrayList<>();
         for (int i = 1; i <= size; i++) {
