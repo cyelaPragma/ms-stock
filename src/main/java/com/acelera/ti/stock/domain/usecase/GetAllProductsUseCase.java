@@ -10,6 +10,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class GetAllProductsUseCase {
     private final ProductServices productServices;
+
     public List<Product> action() {
         List<Product> products = productServices.getAllProducts();
         if (products == null || products.isEmpty()) {
