@@ -11,7 +11,7 @@ public class PersonMocks {
                 .mail("correo" + id + "@correo.com")
                 .phone("3111231234")
                 .address("direccion " + id)
-                .dniTypeId("cedula")
+                .dniTypeId("cédula")
                 .dniNumber("123" + id)
                 .personTypeId("natural")
                 .build();

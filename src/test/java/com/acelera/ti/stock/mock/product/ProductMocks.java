@@ -10,7 +10,7 @@ public class ProductMocks {
         return Product.builder()
                 .id(id)
                 .name("Producto " + id)
-                .description("descripcion " + id)
+                .description("descripción " + id)
                 .model("modelo " + id)
                 .brand(BrandMocks.getBrand(id))
                 .category(CategoryMocks.getCategory(id))

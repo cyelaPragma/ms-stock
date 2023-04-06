@@ -10,12 +10,8 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
-
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.when;
 
@@ -30,27 +26,23 @@ class GetAllStockUseCaseTest {
     void setUp() {
         getAllStockUseCase = new GetAllStockUseCase(stockRepository);
     }
-
     @Test
     void readAllProductsSuccess() {
         when(stockRepository.getAllStock()).thenReturn(StockMocks.getStocks(5));
         List<Stock> stocksResponse = getAllStockUseCase.action();
-        assertTrue(stocksResponse.size() > 0);
+        assertTrue(stocksResponse.size()>0);
         assertArrayEquals(StockMocks.getStocks(5).toArray(), stocksResponse.toArray());
     }
-
     @Test
     void readAllProductsEmpty() {
         when(stockRepository.getAllStock()).thenReturn(StockMocks.getStocks(0));
         assertThrows(NotExistStocksException.class, () -> getAllStockUseCase.action());
     }
-
     @Test
     void readAllProductsNull() {
         when(stockRepository.getAllStock()).thenReturn(null);
         assertThrows(NotExistStocksException.class, () -> getAllStockUseCase.action());
     }
-
     @Test
     void readAllProductsTechnicalError() {
         doThrow(TechnicalException.class).when(stockRepository).getAllStock();

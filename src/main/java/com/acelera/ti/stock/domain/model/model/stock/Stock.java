@@ -15,6 +15,6 @@ import lombok.ToString;
 public class Stock {
     private Long id;
     private Product product;
-    private Double sellprice;
+    private Double sellPrice;
     private int amount;
 }

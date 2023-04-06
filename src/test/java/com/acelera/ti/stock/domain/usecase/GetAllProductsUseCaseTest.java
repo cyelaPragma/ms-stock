@@ -23,6 +23,7 @@ import static org.mockito.Mockito.when;
 class GetAllProductsUseCaseTest {
     @InjectMocks
     private GetAllProductsUseCase getAllProductsUseCase;
+
     @Mock
     private ProductServices productServices;
 

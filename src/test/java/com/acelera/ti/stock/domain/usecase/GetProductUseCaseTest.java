@@ -48,3 +48,4 @@ class GetProductUseCaseTest {
         assertThrows(TechnicalException.class, () -> readProductUseCase.action(1L));
     }
 }
+

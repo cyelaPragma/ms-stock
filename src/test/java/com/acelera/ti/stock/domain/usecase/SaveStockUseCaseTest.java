@@ -16,7 +16,6 @@ import static org.mockito.Mockito.when;
 
 @SpringBootTest
 class SaveStockUseCaseTest {
-
     @InjectMocks
     private SaveStockUseCase saveStockUseCase;
     @Mock

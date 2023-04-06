@@ -11,7 +11,7 @@ import lombok.ToString;
 @Getter
 @EqualsAndHashCode
 @ToString
-public class ProvisiongProduct {
+public class ProvisioningProduct {
     private Long id;
     private Stock stock;
     private int amount;
