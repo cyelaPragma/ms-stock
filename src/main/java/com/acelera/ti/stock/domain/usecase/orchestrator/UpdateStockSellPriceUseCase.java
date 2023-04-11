@@ -17,7 +17,7 @@ public class UpdateStockSellPriceUseCase {
     public Stock action(Long stockId, Double sellPrice) {
         try {
             var stock = getStockUseCase.action(stockId) ;
-            stock.setSellprice(sellPrice);
+            stock.setSellPrice(sellPrice);
             return saveStockUseCase.action(stock);
         } catch(StockNotFoundException e){
             log.error("Stock not encontrado para el id: " + stockId, e);

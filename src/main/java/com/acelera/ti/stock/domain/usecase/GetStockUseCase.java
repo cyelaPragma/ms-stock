@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class GetStockUseCase {
     private final StockRepository stockRepository;
+
     public Stock action(Long id) {
         Stock stock = stockRepository.getStockById(id);
         if (stock == null) {

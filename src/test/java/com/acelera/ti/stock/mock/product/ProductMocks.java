@@ -6,16 +6,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProductMocks {
-    public static Product getProduct(Long id){
+    public static Product getProduct(Long id) {
         return Product.builder()
                 .id(id)
-                .name("Producto "+id)
-                .description("descripcion "+id)
-                .model("modelo "+id)
+                .name("Producto " + id)
+                .description("descripción " + id)
+                .model("modelo " + id)
                 .brand(BrandMocks.getBrand(id))
                 .category(CategoryMocks.getCategory(id))
                 .build();
     }
+
     public static List<Product> getProducts(int size) {
         List<Product> products = new ArrayList<>();
         for (int i = 1; i <= size; i++) {

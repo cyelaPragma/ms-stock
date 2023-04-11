@@ -15,7 +15,6 @@ import static org.mockito.Mockito.when;
 
 @SpringBootTest
 class SaveStockUseCaseTest {
-
     @InjectMocks
     private SaveStockUseCase saveStockUseCase;
     @Mock
@@ -25,11 +24,13 @@ class SaveStockUseCaseTest {
     void setUp() {
         saveStockUseCase = new SaveStockUseCase(stockRepository);
     }
+
     @Test
     void saveSuccess() {
         when(stockRepository.getStockById(1L)).thenReturn(StockMocks.getStock(1L));
         assertDoesNotThrow(() -> saveStockUseCase.action(StockMocks.getStock(1L)));
     }
+
     @Test
     void saveTechnicalError() {
         doThrow(TechnicalException.class).when(stockRepository).saveStock(StockMocks.getStock(1L));

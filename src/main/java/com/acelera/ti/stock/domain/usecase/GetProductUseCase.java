@@ -8,11 +8,14 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class GetProductUseCase {
     private final ProductServices productServices;
-    public Product action(Long id) {
-        Product product = productServices.getProductById(id);
+
+    public Product action(Long productId) {
+        Product product = productServices.getProductById(productId);
         if (product == null) {
             throw new ProductNotFoundException();
         }
         return product;
     }
 }
+
+

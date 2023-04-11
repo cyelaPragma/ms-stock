@@ -1,0 +1,26 @@
+server:
+  port: 8080
+
+external:
+  mock:
+    api:
+      base-url: https://63f577683f99f5855dc1d874.mockapi.io/aceleraTi
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost/stock
+    username: root
+    password: root
+
+  jpa:
+    hibernate:
+      host: localhost
+      port: 3306
+      database: stock
+      ddl-auto: update
+
+  show-sql: true
+
+jwt:
+  secret: fBcfto6dITsk0fSfBcfto6dITsk0fSfBcfto6dITsk0fS
+  expiration: 43200
