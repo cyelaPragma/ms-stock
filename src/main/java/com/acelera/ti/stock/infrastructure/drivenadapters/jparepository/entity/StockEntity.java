@@ -25,7 +25,7 @@ public class StockEntity {
     @Column(name = "ID")
     private long id;
 
-    @Column(name = "ID_PRODUCT")
+    @Column(name = "PRODUCT_ID")
     private long productId;
 
     @Column(name = "CANTIDAD")
