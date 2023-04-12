@@ -14,7 +14,6 @@ import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 public class FilterStockByParametersUseCase {
-
     private final GetAllStockUseCase getAllStockUseCase;
     private final GetPageStockUseCase getPageStockUseCase;
 
@@ -42,7 +41,6 @@ public class FilterStockByParametersUseCase {
         return getPageStockUseCase.action(stockFilter, pageNumber, pageSize);
     }
 
-
      static class FilterList {
         List<Predicate<Stock>> filters = new ArrayList<>();
 
@@ -54,5 +52,5 @@ public class FilterStockByParametersUseCase {
             return filters.stream().reduce(Predicate::and).orElse(p -> true);
         }
     }
-
 }
+

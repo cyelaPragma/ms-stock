@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
 import java.util.List;
 
 @RestController
@@ -51,7 +52,7 @@ public class StockController {
 
     @PostMapping("/filter")
     public ResponseEntity<List<Stock>> filterStockByParameters(
-            @RequestBody FilterParameters filterParameters,@RequestParam int page, @RequestParam int size) {
+            @RequestBody FilterParameters filterParameters, @RequestParam int page, @RequestParam int size) {
         List<Stock> stockList = filterStockByParameters.action(filterParameters, page, size);
         HttpStatus status = stockList.isEmpty() ? HttpStatus.NO_CONTENT : HttpStatus.OK;
         return ResponseEntity.status(status).body(stockList);

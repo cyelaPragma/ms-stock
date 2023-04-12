@@ -61,7 +61,7 @@ class GetShoppingCartUseCaseTest {
         ShoppingCartNotFoundException exception = assertThrows(
                 ShoppingCartNotFoundException.class,
                 () -> getShoppingCartUseCase.action(userId),
-                "Se esperaba que  lanzara una excepción de tipo ShoppingCartNotFoundException"
+                "Se esperaba que lanzara una excepción de tipo ShoppingCartNotFoundException"
         );
         assertEquals(expectedMessage, exception.getMessage(),
                 "Se esperaba que el mensaje de excepción fuera: " + expectedMessage);

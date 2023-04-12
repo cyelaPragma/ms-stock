@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,28 +14,27 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
+import java.time.LocalDate;
 
 @Entity
-@Table(name = "stocks")
+@Table(name = "carrito", uniqueConstraints = @UniqueConstraint(name = "uk_id_user", columnNames = "id_user"))
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 @ToString
 @Builder
-public class StockEntity {
+public class ShoppingCartEntity {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
-    private long id;
+    private Long id;
 
-    @Column(name = "id_product")
-    private long productId;
+    @Column(name = "id_user")
+    private Long userId;
 
-    @Column(name = "cantidad")
-    private double sellPrice;
-
-    @Column(name = "precio_venta")
-    private int amount;
+    @Column(name = "ultima_actualizacion")
+    @UpdateTimestamp
+    private LocalDate lastUpdate;
 }
-
-

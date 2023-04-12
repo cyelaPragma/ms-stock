@@ -5,8 +5,6 @@ import com.acelera.ti.stock.domain.model.model.cart.ShoppingCart;
 import com.acelera.ti.stock.domain.usecase.GetShoppingCartUseCase;
 import lombok.RequiredArgsConstructor;
 
-import java.time.LocalDate;
-
 @RequiredArgsConstructor
 public class DeleteProductsByCartUseCase {
     private final GetShoppingCartUseCase getShoppingCartUseCase;
@@ -17,7 +15,6 @@ public class DeleteProductsByCartUseCase {
             throw new ProductNotFoundException();
         }
         cart.getProducts().removeIf(product -> product.getId().equals(productToRemoveId));
-        cart.setLastUpdate(LocalDate.now());
     }
 }
 

@@ -4,5 +4,6 @@ import com.acelera.ti.stock.domain.model.model.cart.ShoppingCart;
 
 public interface ShoppingCartRepository {
     ShoppingCart getShoppingCartByUserId(Long userId);
+    void removeProductFromCart(long productId, long userId);
 }
 
