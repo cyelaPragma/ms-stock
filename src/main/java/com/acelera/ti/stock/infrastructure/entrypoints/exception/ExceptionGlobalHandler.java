@@ -43,7 +43,7 @@ public class ExceptionGlobalHandler {
     }
 
     @ExceptionHandler(BadStockSellPriceException.class)
-    public ResponseEntity<ResponseDTO> badStockSellPriceException(BadParamsException e){
+    public ResponseEntity<ResponseDTO> badStockSellPriceException(BadStockSellPriceException e){
         ResponseDTO response = new ResponseDTO(null, HttpStatus.BAD_REQUEST.value(), "error", e.getLocalizedMessage());
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
