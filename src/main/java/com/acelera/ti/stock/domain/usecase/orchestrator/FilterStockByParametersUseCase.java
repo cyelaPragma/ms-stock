@@ -7,6 +7,7 @@ import com.acelera.ti.stock.domain.model.model.stock.Stock;
 import com.acelera.ti.stock.domain.usecase.GetAllStockUseCase;
 import com.acelera.ti.stock.domain.usecase.GetPageStockUseCase;
 import lombok.RequiredArgsConstructor;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
@@ -41,7 +42,7 @@ public class FilterStockByParametersUseCase {
         return getPageStockUseCase.action(stockFilter, pageNumber, pageSize);
     }
 
-     static class FilterList {
+    static class FilterList {
         List<Predicate<Stock>> filters = new ArrayList<>();
 
         public void addFilter(Predicate<Stock> filter) {

@@ -5,9 +5,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,7 +21,6 @@ import javax.persistence.Table;
 @NoArgsConstructor
 @Getter
 @Setter
-@ToString
 @Builder
 public class ShoppingCartProductEntity {
     @Id
@@ -31,8 +28,8 @@ public class ShoppingCartProductEntity {
     @Column(name = "id")
     private Long id;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_carrito", referencedColumnName = "id")
+    @ManyToOne
+    @JoinColumn(name = "id_carrito")
     private ShoppingCartEntity shoppingCart;
 
     @ManyToOne
@@ -42,3 +39,4 @@ public class ShoppingCartProductEntity {
     @Column(name = "cantidad")
     private Integer amount;
 }
+

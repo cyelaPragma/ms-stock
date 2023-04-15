@@ -1,6 +1,7 @@
 package com.acelera.ti.stock.domain.usecase.orchestrator;
 
 import com.acelera.ti.stock.domain.model.exceptions.ProductNotFoundException;
+import com.acelera.ti.stock.domain.model.gateways.repositories.ShoppingCartRepository;
 import com.acelera.ti.stock.domain.model.model.cart.ShoppingCart;
 import com.acelera.ti.stock.domain.model.model.cart.ShoppingCartProduct;
 import com.acelera.ti.stock.domain.usecase.GetShoppingCartUseCase;
@@ -29,9 +30,12 @@ class DeleteProductsByCartUseCaseTest {
     @Mock
     private GetShoppingCartUseCase getShoppingCartUseCase;
 
+    @Mock
+    private ShoppingCartRepository shoppingCartRepository;
+
     @BeforeEach
     void setUp() {
-        deleteProductsByCartUseCase = new DeleteProductsByCartUseCase(getShoppingCartUseCase);
+        deleteProductsByCartUseCase = new DeleteProductsByCartUseCase(getShoppingCartUseCase, shoppingCartRepository);
     }
 
     @Test
@@ -56,7 +60,7 @@ class DeleteProductsByCartUseCaseTest {
 
     @Test
     @DisplayName("Given a non-existent product, When trying to delete it from the shopping cart, " +
-                 "Then the cart should remain the same")
+            "Then the cart should remain the same")
     void testDeleteNonexistentProductFromCart() {
         // Configurar
         long userId = 1L;
@@ -76,7 +80,7 @@ class DeleteProductsByCartUseCaseTest {
 
     @Test
     @DisplayName("Given an empty cart, When trying to delete a product, " +
-                 "Then a ProductNotFoundException should be thrown")
+            "Then a ProductNotFoundException should be thrown")
     void testDeleteProductFromEmptyCart() {
         // Configurar
         long userId = 2L;
@@ -91,4 +95,5 @@ class DeleteProductsByCartUseCaseTest {
         verify(getShoppingCartUseCase).action(userId);
     }
 }
+
 

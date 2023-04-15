@@ -25,49 +25,50 @@ public class StockConfig {
     }
 
     @Bean
-    public GetAllProductsUseCase getAllProductsUseCase(ProductServices productServices){
+    public GetAllProductsUseCase getAllProductsUseCase(ProductServices productServices) {
         return new GetAllProductsUseCase(productServices);
     }
 
     @Bean
-    public GetProductUseCase getProductUseCase(ProductServices productServices){
+    public GetProductUseCase getProductUseCase(ProductServices productServices) {
         return new GetProductUseCase(productServices);
     }
 
     @Bean
-    public SaveStockUseCase saveStockUseCase(StockRepository stockRepository){
+    public SaveStockUseCase saveStockUseCase(StockRepository stockRepository) {
         return new SaveStockUseCase(stockRepository);
     }
 
     @Bean
-    public GetAllStockUseCase getAllStockUseCase (StockRepository stockRepository){
+    public GetAllStockUseCase getAllStockUseCase(StockRepository stockRepository) {
         return new GetAllStockUseCase(stockRepository);
     }
 
     @Bean
-    public GetStockUseCase getStockUseCase (StockRepository stockRepository){
-       return new  GetStockUseCase (stockRepository);
+    public GetStockUseCase getStockUseCase(StockRepository stockRepository) {
+        return new GetStockUseCase(stockRepository);
     }
 
     @Bean
-    public GetPageStockUseCase getPageStockUseCase(){
+    public GetPageStockUseCase getPageStockUseCase() {
         return new GetPageStockUseCase();
     }
 
     @Bean
     public FilterStockByParametersUseCase filterProductsByStockUseCase(
-            GetAllStockUseCase getAllStockUseCase, GetPageStockUseCase getPageStockUseCase){
+            GetAllStockUseCase getAllStockUseCase, GetPageStockUseCase getPageStockUseCase) {
         return new FilterStockByParametersUseCase(getAllStockUseCase, getPageStockUseCase);
     }
 
     @Bean
-    public GetShoppingCartUseCase getShoppingCartUseCase(ShoppingCartRepository shoppingCartRepository){
+    public GetShoppingCartUseCase getShoppingCartUseCase(ShoppingCartRepository shoppingCartRepository) {
         return new GetShoppingCartUseCase(shoppingCartRepository);
     }
 
     @Bean
-    public DeleteProductsByCartUseCase deleteProductsByCartUseCase(GetShoppingCartUseCase getShoppingCartUseCase){
-        return new DeleteProductsByCartUseCase(getShoppingCartUseCase);
+    public DeleteProductsByCartUseCase deleteProductsByCartUseCase(
+            GetShoppingCartUseCase getShoppingCartUseCase, ShoppingCartRepository shoppingCartRepository) {
+        return new DeleteProductsByCartUseCase(getShoppingCartUseCase, shoppingCartRepository);
     }
 }
 

@@ -2,10 +2,10 @@ package com.acelera.ti.stock.infrastructure.drivenadapters.jparepository.getways
 
 import com.acelera.ti.stock.domain.model.exceptions.ShoppingCartNotFoundException;
 import com.acelera.ti.stock.domain.model.model.cart.ShoppingCart;
-import com.acelera.ti.stock.domain.model.model.user.Person;
 import com.acelera.ti.stock.infrastructure.drivenadapters.jparepository.entity.ShoppingCartEntity;
 import com.acelera.ti.stock.infrastructure.drivenadapters.jparepository.mapper.ShoppingCartMapper;
 import com.acelera.ti.stock.infrastructure.drivenadapters.jparepository.repository.ShoppingCartJpaRepository;
+import com.acelera.ti.stock.infrastructure.drivenadapters.jparepository.repository.ShoppingCartProductJpaRepository;
 import com.acelera.ti.stock.mock.cart.ShoppingCartMocks;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
@@ -19,8 +19,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.time.LocalDate;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.verify;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest
@@ -31,13 +32,17 @@ class ShoppingCartRepositoryImplTest {
     @Mock
     private ShoppingCartMapper shoppingCartMapper;
 
+    @Mock
+    private ShoppingCartProductJpaRepository shoppingCartProductJpaRepository;
+
     @InjectMocks
     private ShoppingCartRepositoryImpl shoppingCartRepositoryImpl;
 
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
-        shoppingCartRepositoryImpl = new ShoppingCartRepositoryImpl(shoppingCartJpaRepository, shoppingCartMapper);
+        shoppingCartRepositoryImpl = new ShoppingCartRepositoryImpl(
+                shoppingCartJpaRepository, shoppingCartProductJpaRepository, shoppingCartMapper);
     }
 
     @Test

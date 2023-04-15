@@ -5,12 +5,9 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -20,7 +17,6 @@ import javax.persistence.Table;
 @NoArgsConstructor
 @Getter
 @Setter
-@ToString
 @Builder
 public class StockEntity {
     @Id
@@ -30,11 +26,13 @@ public class StockEntity {
     @Column(name = "id_product")
     private long productId;
 
-    @Column(name = "cantidad")
+    @Column(name = "precio_venta")
     private double sellPrice;
 
-    @Column(name = "precio_venta")
+    @Column(name = "cantidad")
     private int amount;
 }
+
+
 
 
