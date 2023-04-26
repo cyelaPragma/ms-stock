@@ -28,10 +28,10 @@ public class StockEntity {
     @Column(name = "ID_PRODUCT")
     private long productId;
 
-    @Column(name = "CANTIDAD")
+    @Column(name = "PRECIO_VENTA")
     private double sellPrice;
 
-    @Column(name = "PRECIO_VENTA")
+    @Column(name = "CANTIDAD")
     private int amount;
 }
 

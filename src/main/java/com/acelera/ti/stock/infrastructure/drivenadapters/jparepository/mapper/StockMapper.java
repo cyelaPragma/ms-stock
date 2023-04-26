@@ -1,6 +1,7 @@
 package com.acelera.ti.stock.infrastructure.drivenadapters.jparepository.mapper;
 
 import com.acelera.ti.stock.domain.model.model.stock.Stock;
+import com.acelera.ti.stock.infrastructure.drivenadapters.dto.ProductForSaleDto;
 import com.acelera.ti.stock.infrastructure.drivenadapters.jparepository.entity.StockEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -15,4 +16,8 @@ public interface StockMapper {
     StockEntity stockToStockEntity(Stock stock);
 
     List<Stock> entitiesToStocks(List<StockEntity> stockEntities);
+    List<ProductForSaleDto> stocksToProductsForSaleDto(List<Stock> stocks);
+    @Mapping(target = "description", source = "stock.product.description")
+    @Mapping(target = "name", source = "stock.product.name")
+    ProductForSaleDto stockToProductForSaleDto(Stock stock);
 }
