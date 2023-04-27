@@ -7,8 +7,8 @@ import com.acelera.ti.stock.domain.usecase.GetStockUseCase;
 import com.acelera.ti.stock.domain.usecase.SaveStockUseCase;
 import com.acelera.ti.stock.domain.usecase.orchestrator.FilterStockByParametersUseCase;
 import com.acelera.ti.stock.domain.usecase.orchestrator.GetProductsForSaleUseCase;
-import com.acelera.ti.stock.infrastructure.drivenadapters.dto.ProductForSaleDto;
-import com.acelera.ti.stock.infrastructure.drivenadapters.jparepository.mapper.StockMapper;
+import com.acelera.ti.stock.infrastructure.entrypoints.rest.dto.ProductForSaleDto;
+import com.acelera.ti.stock.infrastructure.entrypoints.rest.mapper.ProductForSaleMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,7 +30,7 @@ public class StockController {
     private final GetStockUseCase getStockUseCase;
     private final FilterStockByParametersUseCase filterStockByParameters;
     private final GetProductsForSaleUseCase getProductsForSaleUseCase;
-    private final StockMapper stockMapper;
+    private final ProductForSaleMapper productForSaleMapper;
 
     @PostMapping
     public ResponseEntity<Stock> saveStock(@RequestBody Stock stock) {
@@ -51,12 +51,11 @@ public class StockController {
         return ResponseEntity.status(status).body(stockList);
     }
     @PostMapping("/sale")
-    //@PreAuthorize("hasRole('USER_ROLE')")
     @PreAuthorize("hasRole('CLIENT')")
     public ResponseEntity<List<ProductForSaleDto>> getProductsForSale(
             @RequestBody FilterProductsForSaleParameters filterParameters, @RequestParam int page, @RequestParam int size) {
         List<Stock> stockList = getProductsForSaleUseCase.action(filterParameters, page, size);
-        List<ProductForSaleDto> productForSaleDto = stockMapper.stocksToProductsForSaleDto(stockList);
+        List<ProductForSaleDto> productForSaleDto = productForSaleMapper.stocksToProductsForSaleDto(stockList);
         return ResponseEntity.status(HttpStatus.OK).body(productForSaleDto);
     }
 }

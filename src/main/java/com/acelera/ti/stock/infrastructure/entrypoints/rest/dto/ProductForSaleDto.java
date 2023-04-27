@@ -1,4 +1,4 @@
-package com.acelera.ti.stock.infrastructure.drivenadapters.dto;
+package com.acelera.ti.stock.infrastructure.entrypoints.rest.dto;
 
 import lombok.Builder;
 import lombok.Getter;
