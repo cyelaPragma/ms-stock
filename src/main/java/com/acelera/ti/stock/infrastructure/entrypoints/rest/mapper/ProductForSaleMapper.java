@@ -9,6 +9,7 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface ProductForSaleMapper {
     List<ProductForSaleDto> stocksToProductsForSaleDto(List<Stock> stocks);
+
     @Mapping(target = "description", source = "stock.product.description")
     @Mapping(target = "name", source = "stock.product.name")
     ProductForSaleDto stockToProductForSaleDto(Stock stock);

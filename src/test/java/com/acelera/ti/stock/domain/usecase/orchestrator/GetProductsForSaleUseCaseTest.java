@@ -28,6 +28,7 @@ class GetProductsForSaleUseCaseTest {
     void setUp() {
         getProductsForSaleUseCase = new GetProductsForSaleUseCase(getStocksForSaleUseCase, getPageStockUseCase);
     }
+
     @Test
     void getProductsForSaleWithAllParameters() {
         List<Stock> stockList = StockMocks.getStocks(15);
@@ -37,6 +38,7 @@ class GetProductsForSaleUseCaseTest {
         List<Stock> stocks = getProductsForSaleUseCase.action(filterProductsForSaleParameters,0,5);
         assertArrayEquals(stockList.subList(0,3).toArray(), stocks.toArray());
     }
+
     @Test
     void getProductsForSaleByProductName() {
         List<Stock> stockList = StockMocks.getStocks(10);
@@ -46,6 +48,7 @@ class GetProductsForSaleUseCaseTest {
         List<Stock> stocks = getProductsForSaleUseCase.action(filterProductsForSaleParameters, 0,5);
         assertArrayEquals(stockList.subList(3,7).toArray(), stocks.toArray());
     }
+
     @Test
     void getProductsForSaleByCategoryName() {
         List<Stock> stockList = StockMocks.getStocks(10);
@@ -55,6 +58,7 @@ class GetProductsForSaleUseCaseTest {
         List<Stock> stocks = getProductsForSaleUseCase.action(filterProductsForSaleParameters, 0, 5);
         assertArrayEquals(stockList.subList(2,8).toArray(), stocks.toArray());
     }
+
     @Test
     void getProductsForSaleByBrandName() {
         List<Stock> stockList = StockMocks.getStocks(10);
@@ -64,6 +68,7 @@ class GetProductsForSaleUseCaseTest {
         List<Stock> stocks = getProductsForSaleUseCase.action(filterProductsForSaleParameters, 0,5);
         assertArrayEquals(stockList.subList(3,9).toArray(), stocks.toArray());
     }
+
     @Test
     void getProductsForSaleByBrandAndProductNames() {
         List<Stock> stockList = StockMocks.getStocks(10);
@@ -73,6 +78,7 @@ class GetProductsForSaleUseCaseTest {
         List<Stock> stocks = getProductsForSaleUseCase.action(filterProductsForSaleParameters,2,3);
         assertArrayEquals(stockList.subList(9,10).toArray(), stocks.toArray());
     }
+
     @Test
     void getProductsForSaleByBrandAndCategoryNames() {
         List<Stock> stockList = StockMocks.getStocks(10);
@@ -82,6 +88,7 @@ class GetProductsForSaleUseCaseTest {
         List<Stock> stocks = getProductsForSaleUseCase.action(filterProductsForSaleParameters,1,2);
         assertArrayEquals(stockList.subList(4,6).toArray(), stocks.toArray());
     }
+
     @Test
     void getProductsForSaleByProductAndCategoryNames() {
         List<Stock> stockList = StockMocks.getStocks(10);
@@ -91,6 +98,7 @@ class GetProductsForSaleUseCaseTest {
         List<Stock> stocks = getProductsForSaleUseCase.action(filterProductsForSaleParameters,0,3);
         assertArrayEquals(stockList.subList(0,3).toArray(), stocks.toArray());
     }
+
     @Test
     void getProductsForSaleWithoutParameters() {
         List<Stock> stockList = StockMocks.getStocks(22);
@@ -100,6 +108,7 @@ class GetProductsForSaleUseCaseTest {
         List<Stock> stocks = getProductsForSaleUseCase.action(filterProductsForSaleParameters,0,0);
         assertArrayEquals(stockList.subList(0,21).toArray(), stocks.toArray());
     }
+
     @Test
     void getProductsForSaleWithInvalidParameters() {
         List<Stock> stockList = StockMocks.getStocks(15);

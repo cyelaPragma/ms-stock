@@ -37,12 +37,14 @@ public class StockController {
         Stock savedStock = saveStockUseCase.action(stock);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedStock);
     }
+
     @GetMapping("/{id}")
     public ResponseEntity<Stock> getStock(@PathVariable("id") Long id) {
         Stock stock = getStockUseCase.action(id);
         HttpStatus status = stock.getId() != null ? HttpStatus.OK : HttpStatus.NOT_FOUND;
         return new ResponseEntity<>(stock, status);
     }
+
     @PostMapping("/filter")
     public ResponseEntity<List<Stock>> filterStockByParameters(
             @RequestBody FilterParameters filterParameters,@RequestParam int page, @RequestParam int size) {
@@ -50,6 +52,7 @@ public class StockController {
         HttpStatus status = stockList.isEmpty() ? HttpStatus.NO_CONTENT : HttpStatus.OK;
         return ResponseEntity.status(status).body(stockList);
     }
+
     @PostMapping("/sale")
     @PreAuthorize("hasRole('CLIENT')")
     public ResponseEntity<List<ProductForSaleDto>> getProductsForSale(

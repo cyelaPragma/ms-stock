@@ -8,5 +8,5 @@ StockRepository {
     List<Stock> getAllStock();
     Stock getStockById(Long id);
     Stock saveStock(Stock stock);
-    List<Stock> findByAmountGreaterThanAndSellPriceIsNotNull();
+    List<Stock> findStocksWithAmountAndSellPrice();
 }

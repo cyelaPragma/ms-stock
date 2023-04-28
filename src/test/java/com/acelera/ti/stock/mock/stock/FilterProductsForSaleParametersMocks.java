@@ -7,9 +7,9 @@ import com.acelera.ti.stock.domain.model.model.parameters.FilterProductsForSaleP
 public class FilterProductsForSaleParametersMocks {
     public static FilterProductsForSaleParameters getFilterAllParameters(){
         return FilterProductsForSaleParameters.builder()
-                .brandName(getListString("marca", 1, 3))
-                .categoryName(getListString("categoria",1, 3))
-                .productName(getListString("Producto ",1, 3))
+                .brandsName(getListString("marca", 1, 3))
+                .categoriesName(getListString("categoria",1, 3))
+                .productsName(getListString("Producto ",1, 3))
                 .build();
     }
     private static List<String> getListString(String mesagge, int start, int end) {
@@ -21,42 +21,42 @@ public class FilterProductsForSaleParametersMocks {
     }
     public static FilterProductsForSaleParameters getInvalidFilterParameters() {
         return FilterProductsForSaleParameters.builder()
-                .brandName(getListString("marca no valida", 1, 2))
-                .categoryName(getListString("categoria no valida",1, 2))
-                .productName(getListString("Producto no valido",1, 2))
+                .brandsName(getListString("marca no valida", 1, 2))
+                .categoriesName(getListString("categoria no valida",1, 2))
+                .productsName(getListString("Producto no valido",1, 2))
                 .build();
     }
     public static FilterProductsForSaleParameters getFilterByProductName() {
         return FilterProductsForSaleParameters.builder()
-                .productName(getListString("Producto ",4, 7))
+                .productsName(getListString("Producto ",4, 7))
                 .build();
     }
     public static FilterProductsForSaleParameters getFilterByCategoryName() {
         return FilterProductsForSaleParameters.builder()
-                .categoryName(getListString("categoria",3, 8))
+                .categoriesName(getListString("categoria",3, 8))
                 .build();
     }
     public static FilterProductsForSaleParameters getFilterByBrandName() {
         return FilterProductsForSaleParameters.builder()
-                .brandName(getListString("marca",4, 10))
+                .brandsName(getListString("marca",4, 10))
                 .build();
     }
     public static FilterProductsForSaleParameters getFilterByBrandAndProductName() {
         return FilterProductsForSaleParameters.builder()
-                .productName(getListString("Producto ",4,10))
-                .brandName(getListString("marca",4, 10))
+                .productsName(getListString("Producto ",4,10))
+                .brandsName(getListString("marca",4, 10))
                 .build();
     }
     public static FilterProductsForSaleParameters getFilterByBrandAndCategoryName() {
         return FilterProductsForSaleParameters.builder()
-                .categoryName(getListString("categoria",3,7))
-                .brandName(getListString("marca",3,7))
+                .categoriesName(getListString("categoria",3,7))
+                .brandsName(getListString("marca",3,7))
                 .build();
     }
     public static FilterProductsForSaleParameters getFilterByProductAndCategoryName() {
         return FilterProductsForSaleParameters.builder()
-                .categoryName(getListString("categoria",1,7))
-                .productName(getListString("Producto ",1,7))
+                .categoriesName(getListString("categoria",1,7))
+                .productsName(getListString("Producto ",1,7))
                 .build();
     }
 }

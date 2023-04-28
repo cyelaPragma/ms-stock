@@ -14,22 +14,24 @@ import java.util.stream.Collectors;
 public class GetProductsForSaleUseCase {
     private final GetStocksForSaleUseCase getStocksForSaleUseCase;
     private final GetPageStockUseCase getPageStockUseCase;
+
     public List<Stock> action(FilterProductsForSaleParameters filterProductsForSaleParameters,int pageNumber, int pageSize){
         List<Stock> stocks = getStocksForSaleUseCase.action();
         List<Predicate<Stock>> filters = getFilters(filterProductsForSaleParameters);
         List<Stock> stocksResponse = stocks.stream().filter(filters.stream().reduce(Predicate::and).orElse(p -> true)).collect(Collectors.toList());
         return getPageStockUseCase.action(stocksResponse, pageNumber, pageSize);
     }
+
     private List<Predicate<Stock>> getFilters(FilterProductsForSaleParameters filterProductsForSaleParameters) {
         List<Predicate<Stock>> filters = new ArrayList<>();
-        if(filterProductsForSaleParameters.getProductName() != null && !filterProductsForSaleParameters.getProductName().isEmpty()) {
-            filters.add(s -> filterProductsForSaleParameters.getProductName().contains(s.getProduct().getName()));
+        if(filterProductsForSaleParameters.getProductsName() != null && !filterProductsForSaleParameters.getProductsName().isEmpty()) {
+            filters.add(s -> filterProductsForSaleParameters.getProductsName().contains(s.getProduct().getName()));
         }
-        if(filterProductsForSaleParameters.getBrandName() != null && !filterProductsForSaleParameters.getBrandName().isEmpty()) {
-            filters.add(s -> filterProductsForSaleParameters.getBrandName().contains(s.getProduct().getBrand().getName()));
+        if(filterProductsForSaleParameters.getBrandsName() != null && !filterProductsForSaleParameters.getBrandsName().isEmpty()) {
+            filters.add(s -> filterProductsForSaleParameters.getBrandsName().contains(s.getProduct().getBrand().getName()));
         }
-        if(filterProductsForSaleParameters.getCategoryName() != null && !filterProductsForSaleParameters.getCategoryName().isEmpty()) {
-            filters.add(s -> filterProductsForSaleParameters.getCategoryName().contains(s.getProduct().getCategory().getName()));
+        if(filterProductsForSaleParameters.getCategoriesName() != null && !filterProductsForSaleParameters.getCategoriesName().isEmpty()) {
+            filters.add(s -> filterProductsForSaleParameters.getCategoriesName().contains(s.getProduct().getCategory().getName()));
         }
         return filters;
     }

@@ -52,10 +52,12 @@ public class StockConfig {
             GetAllStockUseCase getAllStockUseCase, GetPageStockUseCase getPageStockUseCase){
         return new FilterStockByParametersUseCase(getAllStockUseCase, getPageStockUseCase);
     }
+
     @Bean
     public GetStocksForSaleUseCase getStocksForSaleUseCase(StockRepository stockRepository){
         return new GetStocksForSaleUseCase(stockRepository);
     }
+
     @Bean
     public GetProductsForSaleUseCase getProductsForSaleUseCase(
             GetStocksForSaleUseCase getStocksForSaleUseCase, GetPageStockUseCase getPageStockUseCase){

@@ -6,10 +6,8 @@ import java.util.List;
 @Getter
 @Setter
 @Builder
-@EqualsAndHashCode
-@ToString
 public class FilterProductsForSaleParameters {
-    private List<String> categoryName;
-    private List<String> brandName;
-    private List<String> productName;
+    private List<String> categoriesName;
+    private List<String> brandsName;
+    private List<String> productsName;
 }

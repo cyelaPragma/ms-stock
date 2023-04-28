@@ -9,8 +9,9 @@ import java.util.List;
 @RequiredArgsConstructor
 public class GetStocksForSaleUseCase {
     private final StockRepository stockRepository;
+
     public List<Stock> action(){
-        List<Stock> stocks = stockRepository.findByAmountGreaterThanAndSellPriceIsNotNull();
+        List<Stock> stocks = stockRepository.findStocksWithAmountAndSellPrice();
         if (stocks == null || stocks.isEmpty()) {
             throw new NotExistStocksException();
         }

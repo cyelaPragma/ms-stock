@@ -26,26 +26,30 @@ class GetStocksForSaleUseCaseTest {
     void setUp() {
         getStocksForSaleUseCase = new GetStocksForSaleUseCase(stockRepository);
     }
+
     @Test
     void readStocksForSaleSuccess() {
-        when(stockRepository.findByAmountGreaterThanAndSellPriceIsNotNull()).thenReturn(StockMocks.getStocks(5));
+        when(stockRepository.findStocksWithAmountAndSellPrice()).thenReturn(StockMocks.getStocks(5));
         List<Stock> stockResponse = getStocksForSaleUseCase.action();
         assertTrue(stockResponse.size()>0);
         assertArrayEquals(StockMocks.getStocks(5).toArray(), stockResponse.toArray());
     }
+
     @Test
     void readStockForSaleEmpty(){
-        when(stockRepository.findByAmountGreaterThanAndSellPriceIsNotNull()).thenReturn(StockMocks.getStocks(0));
+        when(stockRepository.findStocksWithAmountAndSellPrice()).thenReturn(StockMocks.getStocks(0));
         assertThrows(NotExistStocksException.class, () -> getStocksForSaleUseCase.action());
     }
+
     @Test
     void readStockForSaleNull(){
-        when(stockRepository.findByAmountGreaterThanAndSellPriceIsNotNull()).thenReturn(null);
+        when(stockRepository.findStocksWithAmountAndSellPrice()).thenReturn(null);
         assertThrows(NotExistStocksException.class, () -> getStocksForSaleUseCase.action());
     }
+
     @Test
     void readStockForSaleTechnicalError() {
-        doThrow(TechnicalException.class).when(stockRepository).findByAmountGreaterThanAndSellPriceIsNotNull();
+        doThrow(TechnicalException.class).when(stockRepository).findStocksWithAmountAndSellPrice();
         assertThrows(TechnicalException.class, () -> getStocksForSaleUseCase.action());
     }
 }

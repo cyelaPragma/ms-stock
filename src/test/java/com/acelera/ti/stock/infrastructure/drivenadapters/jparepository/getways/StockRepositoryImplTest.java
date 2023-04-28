@@ -32,6 +32,7 @@ class StockRepositoryImplTest {
     void setUp(){
         stockRepository = new StockRepositoryImpl(stockJpaRepository,stockMapper,productServices);
     }
+
     @Test
     void findByAmountGreaterThanAndSellPriceIsNotNull() {
         List<StockEntity> stockEntities = StockEntityMocks.getStockEntities(3);
@@ -40,16 +41,17 @@ class StockRepositoryImplTest {
         when(productServices.getProductById(1L)).thenReturn(ProductMocks.getProduct(1L));
         when(productServices.getProductById(2L)).thenReturn(ProductMocks.getProduct(2L));
         when(productServices.getProductById(3L)).thenReturn(ProductMocks.getProduct(3L));
-        List<Stock> stockResponse = stockRepository.findByAmountGreaterThanAndSellPriceIsNotNull();
+        List<Stock> stockResponse = stockRepository.findStocksWithAmountAndSellPrice();
         assertTrue(stockResponse.size()>0);
         assertArrayEquals(StockMocks.getStocks(3).toArray(), stockResponse.toArray());
     }
+
     @Test
     void findProductsForSaleWhenNotExistStocks() {
         List<StockEntity> stockEntities = StockEntityMocks.getStockEntities(3);
         when(stockJpaRepository.findByAmountGreaterThanAndSellPriceIsNotNull(0)).thenReturn(null);
         when(stockMapper.entitiesToStocks(stockEntities)).thenReturn(null);
-        List<Stock> stockResponse = stockRepository.findByAmountGreaterThanAndSellPriceIsNotNull();
+        List<Stock> stockResponse = stockRepository.findStocksWithAmountAndSellPrice();
         assertTrue(stockResponse.isEmpty());
     }
 }
