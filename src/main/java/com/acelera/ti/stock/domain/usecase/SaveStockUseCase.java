@@ -11,4 +11,3 @@ public class SaveStockUseCase {
         return stockRepository.saveStock(stock);
     }
 }
-
