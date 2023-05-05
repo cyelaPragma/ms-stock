@@ -5,6 +5,7 @@ import com.acelera.ti.stock.domain.model.gateways.services.ProductServices;
 import com.acelera.ti.stock.domain.usecase.*;
 import com.acelera.ti.stock.domain.usecase.orchestrator.FilterStockByParametersUseCase;
 import com.acelera.ti.stock.domain.usecase.orchestrator.GetProductsForSaleUseCase;
+import com.acelera.ti.stock.domain.usecase.orchestrator.UpdateStockSellPriceUseCase;
 import com.acelera.ti.stock.infrastructure.drivenadapters.productservice.feigmClient.ProductFeignClient;
 import com.acelera.ti.stock.infrastructure.drivenadapters.productservice.services.ProductServicesImpl;
 import org.springframework.context.annotation.Bean;
@@ -62,5 +63,11 @@ public class StockConfig {
     public GetProductsForSaleUseCase getProductsForSaleUseCase(
             GetStocksForSaleUseCase getStocksForSaleUseCase, GetPageStockUseCase getPageStockUseCase){
         return new GetProductsForSaleUseCase(getStocksForSaleUseCase, getPageStockUseCase);
+    }
+    
+    @Bean
+    public UpdateStockSellPriceUseCase updateStockSellPriceUseCase(
+            SaveStockUseCase saveStockUseCase, GetStockUseCase getStockUseCase){
+        return new UpdateStockSellPriceUseCase(saveStockUseCase, getStockUseCase);
     }
 }

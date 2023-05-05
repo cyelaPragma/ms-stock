@@ -9,17 +9,10 @@ import com.acelera.ti.stock.domain.usecase.orchestrator.FilterStockByParametersU
 import com.acelera.ti.stock.domain.usecase.orchestrator.GetProductsForSaleUseCase;
 import com.acelera.ti.stock.infrastructure.entrypoints.rest.dto.ProductForSaleDto;
 import com.acelera.ti.stock.infrastructure.entrypoints.rest.mapper.ProductForSaleMapper;
-import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import com.acelera.ti.stock.domain.usecase.orchestrator.UpdateStockSellPriceUseCase;
+import com.acelera.ti.stock.infrastructure.response.ResponseDTO;
+import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
@@ -31,6 +24,7 @@ public class StockController {
     private final FilterStockByParametersUseCase filterStockByParameters;
     private final GetProductsForSaleUseCase getProductsForSaleUseCase;
     private final ProductForSaleMapper productForSaleMapper;
+    private final UpdateStockSellPriceUseCase updateStockSellPrice;
 
     @PostMapping
     public ResponseEntity<Stock> saveStock(@RequestBody Stock stock) {
@@ -44,7 +38,6 @@ public class StockController {
         HttpStatus status = stock.getId() != null ? HttpStatus.OK : HttpStatus.NOT_FOUND;
         return new ResponseEntity<>(stock, status);
     }
-
     @PostMapping("/filter")
     public ResponseEntity<List<Stock>> filterStockByParameters(
             @RequestBody FilterParameters filterParameters,@RequestParam int page, @RequestParam int size) {
@@ -60,5 +53,11 @@ public class StockController {
         List<Stock> stockList = getProductsForSaleUseCase.action(filterParameters, page, size);
         List<ProductForSaleDto> productForSaleDto = productForSaleMapper.stocksToProductsForSaleDto(stockList);
         return ResponseEntity.status(HttpStatus.OK).body(productForSaleDto);
+    }
+    
+    @PatchMapping( "/{stockId}")
+    public ResponseEntity<Stock> UpdateStockSellPrice(@PathVariable("stockId") Long stockId, @RequestParam("sellPrice") Double sellPrice) {
+        Stock stock = updateStockSellPrice.action(stockId, sellPrice);
+        return ResponseEntity.status(HttpStatus.OK).body(stock);
     }
 }
