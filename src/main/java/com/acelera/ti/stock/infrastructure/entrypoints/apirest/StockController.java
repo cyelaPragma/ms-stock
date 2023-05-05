@@ -9,6 +9,9 @@ import com.acelera.ti.stock.domain.usecase.orchestrator.FilterStockByParametersU
 import com.acelera.ti.stock.domain.usecase.orchestrator.GetProductsForSaleUseCase;
 import com.acelera.ti.stock.infrastructure.entrypoints.rest.dto.ProductForSaleDto;
 import com.acelera.ti.stock.infrastructure.entrypoints.rest.mapper.ProductForSaleMapper;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import com.acelera.ti.stock.domain.usecase.orchestrator.UpdateStockSellPriceUseCase;
 import com.acelera.ti.stock.infrastructure.response.ResponseDTO;
@@ -54,7 +57,8 @@ public class StockController {
         List<ProductForSaleDto> productForSaleDto = productForSaleMapper.stocksToProductsForSaleDto(stockList);
         return ResponseEntity.status(HttpStatus.OK).body(productForSaleDto);
     }
-    
+
+    @PreAuthorize("hasRole('EMPLOYEE')")
     @PatchMapping( "/{stockId}")
     public ResponseEntity<Stock> UpdateStockSellPrice(@PathVariable("stockId") Long stockId, @RequestParam("sellPrice") Double sellPrice) {
         Stock stock = updateStockSellPrice.action(stockId, sellPrice);
