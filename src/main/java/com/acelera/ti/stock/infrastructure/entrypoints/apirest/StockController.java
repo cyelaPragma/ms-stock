@@ -1,43 +1,35 @@
 package com.acelera.ti.stock.infrastructure.entrypoints.apirest;
 
 import com.acelera.ti.stock.domain.model.model.parameters.FilterParameters;
+import com.acelera.ti.stock.domain.model.model.parameters.FilterProductsForSaleParameters;
 import com.acelera.ti.stock.domain.model.model.stock.Stock;
-import com.acelera.ti.stock.domain.usecase.GetAllStockUseCase;
-import com.acelera.ti.stock.domain.usecase.GetPageStockUseCase;
 import com.acelera.ti.stock.domain.usecase.GetStockUseCase;
 import com.acelera.ti.stock.domain.usecase.SaveStockUseCase;
 import com.acelera.ti.stock.domain.usecase.orchestrator.FilterStockByParametersUseCase;
+import com.acelera.ti.stock.domain.usecase.orchestrator.GetProductsForSaleUseCase;
+import com.acelera.ti.stock.infrastructure.entrypoints.rest.dto.ProductForSaleDto;
+import com.acelera.ti.stock.infrastructure.entrypoints.rest.mapper.ProductForSaleMapper;
+import org.springframework.security.access.prepost.PreAuthorize;
 import com.acelera.ti.stock.domain.usecase.orchestrator.UpdateStockSellPriceUseCase;
 import com.acelera.ti.stock.infrastructure.response.ResponseDTO;
-import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/stock")
+@RequestMapping("/stocks")
 public class StockController {
     private final SaveStockUseCase saveStockUseCase;
-    private final GetAllStockUseCase getAllStockUseCase;
     private final GetStockUseCase getStockUseCase;
-    private final GetPageStockUseCase getPageStockUseCase;
     private final FilterStockByParametersUseCase filterStockByParameters;
+    private final GetProductsForSaleUseCase getProductsForSaleUseCase;
+    private final ProductForSaleMapper productForSaleMapper;
     private final UpdateStockSellPriceUseCase updateStockSellPrice;
 
     @PostMapping
     public ResponseEntity<Stock> saveStock(@RequestBody Stock stock) {
         Stock savedStock = saveStockUseCase.action(stock);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedStock);
-    }
-
-    @GetMapping
-    public ResponseEntity<List<Stock>> getAllStocks(@RequestParam int page, @RequestParam int size) {
-        List<Stock> stockLists = getPageStockUseCase.action(getAllStockUseCase.action(), page, size);
-        HttpStatus status = stockLists.isEmpty() ? HttpStatus.NO_CONTENT : HttpStatus.OK;
-        return new ResponseEntity<>(stockLists, status);
     }
 
     @GetMapping("/{id}")
@@ -54,6 +46,15 @@ public class StockController {
         return ResponseEntity.status(status).body(stockList);
     }
 
+    @PostMapping("/sale")
+    @PreAuthorize("hasRole('CLIENT')")
+    public ResponseEntity<List<ProductForSaleDto>> getProductsForSale(
+            @RequestBody FilterProductsForSaleParameters filterParameters, @RequestParam int page, @RequestParam int size) {
+        List<Stock> stockList = getProductsForSaleUseCase.action(filterParameters, page, size);
+        List<ProductForSaleDto> productForSaleDto = productForSaleMapper.stocksToProductsForSaleDto(stockList);
+        return ResponseEntity.status(HttpStatus.OK).body(productForSaleDto);
+    }
+    
     @PatchMapping( "/{stockId}")
     public ResponseEntity<Stock> UpdateStockSellPrice(@PathVariable("stockId") Long stockId, @RequestParam("sellPrice") Double sellPrice) {
         Stock stock = updateStockSellPrice.action(stockId, sellPrice);
