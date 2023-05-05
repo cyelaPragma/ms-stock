@@ -24,13 +24,7 @@ public class StockRepositoryImpl implements StockRepository {
     @Override
     public List<Stock> getAllStock() {
         List<Stock> stocks = stockMapper.entitiesToStocks(stockJpaRepository.findAll());
-        List<Stock> stockResponse = new ArrayList<>();
-        for (Stock stock : stocks) {
-            Optional<Product> productOptional = getProductForStock(stock);
-            productOptional.ifPresent(stock::setProduct);
-            stockResponse.add(stock);
-        }
-        return stockResponse;
+        return getStockResponse(stocks);
     }
 
     @Override
@@ -50,6 +44,22 @@ public class StockRepositoryImpl implements StockRepository {
         }
         StockEntity stockEntity = stockMapper.stockToStockEntity(stock);
         return stockMapper.stockEntityToStock(stockJpaRepository.save(stockEntity));
+    }
+
+    @Override
+    public List<Stock> findStocksWithAmountAndSellPrice() {
+        List<Stock> stocks = stockMapper.entitiesToStocks(stockJpaRepository.findByAmountGreaterThanAndSellPriceIsNotNull(0));
+        return getStockResponse(stocks);
+    }
+
+    private List<Stock> getStockResponse(List<Stock> stocks) {
+        List<Stock> stockResponse = new ArrayList<>();
+        for (Stock stock : stocks) {
+            Optional<Product> productOptional = getProductForStock(stock);
+            productOptional.ifPresent(stock::setProduct);
+            stockResponse.add(stock);
+        }
+        return stockResponse;
     }
 
     private Optional<Product> getProductForStock(Stock stock) {
