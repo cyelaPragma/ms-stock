@@ -7,6 +7,8 @@ external:
       base-url: https://63f577683f99f5855dc1d874.mockapi.io/aceleraTi
 
 spring:
+  profiles:
+    include: ${PROFILE}
   datasource:
     url: jdbc:mysql://localhost/stock
     username: root
@@ -18,9 +20,12 @@ spring:
       port: 3306
       database: stock
       ddl-auto: update
-
-  show-sql: true
+      show-sql: true
+      dialect: org.hibernate.dialect.MySQL8Dialect
+      format_sql: true
+      show_sql: true
+      use_sql_comments: true
 
 jwt:
-  secret: fBcfto6dITsk0fSfBcfto6dITsk0fSfBcfto6dITsk0fS
-  expiration: 43200
+  secret: ${JWTSECRET}
+  expiration: ${JWTEXPIRATION}

@@ -33,4 +33,3 @@ public class SecurityConfiguration {
         return httpSecurity.build();
     }
 }
-

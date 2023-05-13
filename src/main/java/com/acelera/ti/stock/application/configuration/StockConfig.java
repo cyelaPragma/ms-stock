@@ -9,8 +9,9 @@ import com.acelera.ti.stock.domain.usecase.GetPageStockUseCase;
 import com.acelera.ti.stock.domain.usecase.GetProductUseCase;
 import com.acelera.ti.stock.domain.usecase.GetShoppingCartUseCase;
 import com.acelera.ti.stock.domain.usecase.GetStockUseCase;
+import com.acelera.ti.stock.domain.usecase.SaveShoppingCartUseCase;
 import com.acelera.ti.stock.domain.usecase.SaveStockUseCase;
-import com.acelera.ti.stock.domain.usecase.orchestrator.DeleteProductsByCartUseCase;
+import com.acelera.ti.stock.domain.usecase.orchestrator.DeleteProductsFromCartUseCase;
 import com.acelera.ti.stock.domain.usecase.orchestrator.FilterStockByParametersUseCase;
 import com.acelera.ti.stock.infrastructure.drivenadapters.productservice.feigmClient.ProductFeignClient;
 import com.acelera.ti.stock.infrastructure.drivenadapters.productservice.services.ProductServicesImpl;
@@ -66,9 +67,14 @@ public class StockConfig {
     }
 
     @Bean
-    public DeleteProductsByCartUseCase deleteProductsByCartUseCase(
+    public DeleteProductsFromCartUseCase deleteProductsByCartUseCase(
             GetShoppingCartUseCase getShoppingCartUseCase, ShoppingCartRepository shoppingCartRepository) {
-        return new DeleteProductsByCartUseCase(getShoppingCartUseCase, shoppingCartRepository);
+        return new DeleteProductsFromCartUseCase(getShoppingCartUseCase, shoppingCartRepository);
+    }
+
+    @Bean
+    public SaveShoppingCartUseCase saveShoppingCartUseCase(ShoppingCartRepository shoppingCartRepository) {
+        return new SaveShoppingCartUseCase(shoppingCartRepository);
     }
 }
 

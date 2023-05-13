@@ -13,15 +13,14 @@ import java.util.Set;
 
 @Mapper(componentModel = "spring")
 public interface ShoppingCartMapper {
-    @Mapping(source = "user.id", target = "userId")
+    @Mapping(source = "user.id", target = "idUser")
     @Mapping(source = "products", target = "products", qualifiedByName = "getProductEntities")
     ShoppingCartEntity shoppingCartToShoppingCartEntity(ShoppingCart shoppingCart);
 
-    @Mapping(source = "userId", target = "user.id")
+    @Mapping(source = "idUser", target = "user.id")
     @Mapping(source = "products", target = "products", qualifiedByName = "getProducts")
     ShoppingCart shoppingCartEntityToShoppingCart(ShoppingCartEntity shoppingCartEntity);
 
-    @Mapping(target = "shoppingCart", ignore = true)
     @Mapping(source = "stock.product.id", target = "stock.productId")
     ShoppingCartProductEntity shoppingCartProductToShoppingCartProductEntity(ShoppingCartProduct shoppingCartProduct);
 
@@ -46,4 +45,5 @@ public interface ShoppingCartMapper {
         return shoppingCartProducts;
     }
 }
+
 
