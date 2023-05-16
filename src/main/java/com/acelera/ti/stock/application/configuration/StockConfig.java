@@ -80,5 +80,16 @@ public class StockConfig {
             SaveStockUseCase saveStockUseCase, GetStockUseCase getStockUseCase){
         return new UpdateStockSellPriceUseCase(saveStockUseCase, getStockUseCase);
     }
-}
 
+    @Bean
+    public GetPageShoppingCartProductUseCase getPageShoppingCartProductUseCase(){
+        return new GetPageShoppingCartProductUseCase();
+    }
+
+    @Bean
+    public GetProductsByCartUseCase getProductsByCartUseCase(
+            GetShoppingCartUseCase getShoppingCartUseCase, GetPageShoppingCartProductUseCase getProductByCartUseCase,
+            GetProductUseCase getProductUseCase) {
+        return new GetProductsByCartUseCase(getShoppingCartUseCase, getProductByCartUseCase, getProductUseCase);
+    }
+}

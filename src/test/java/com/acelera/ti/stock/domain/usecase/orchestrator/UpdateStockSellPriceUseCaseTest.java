@@ -29,10 +29,10 @@ class UpdateStockSellPriceUseCaseTest {
     @Test
     void updateSuccess() {
         Stock stockToSave = StockMocks.getStock(1L);
-        stockToSave.setSellprice(2500.00);
+        stockToSave.setSellPrice(2500.00);
         when(getStockUseCase.action(1L)).thenReturn(StockMocks.getStock(1L));
         when(saveStockUseCase.action(stockToSave)).thenReturn(stockToSave);
         Stock stockResponse = updateStockSellPriceUseCase.action(StockMocks.getStock(1L).getId(),2500.00);
-        assertEquals(2500.00, stockResponse.getSellprice());
+        assertEquals(2500.00, stockResponse.getSellPrice());
     }
 }
