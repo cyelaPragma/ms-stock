@@ -38,7 +38,7 @@ public class FilterStockByParametersUseCase {
         return getPageStockUseCase.action(stockFilter, pageNumber, pageSize);
     }
 
-    static class FilterList {
+    private static class FilterList {
         List<Predicate<Stock>> filters = new ArrayList<>();
 
         public void addFilter(Predicate<Stock> filter) {

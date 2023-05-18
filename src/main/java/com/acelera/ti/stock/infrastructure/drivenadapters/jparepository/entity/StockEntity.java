@@ -35,8 +35,3 @@ public class StockEntity {
     @Column(name = "cantidad")
     private int amount;
 }
-
-
-
-
-
