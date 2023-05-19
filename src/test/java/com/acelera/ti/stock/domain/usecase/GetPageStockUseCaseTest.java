@@ -7,8 +7,13 @@ import jdk.jfr.Name;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+
 import java.util.List;
-import static org.junit.jupiter.api.Assertions.*;
+
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @SpringBootTest
 class GetPageStockUseCaseTest {
@@ -24,16 +29,16 @@ class GetPageStockUseCaseTest {
     @Name("Test to check if the correct page is returned")
     void testGetPageStock() {
         // Configurar
-        List<Stock> inputStocks  = StockMocks.getStocks(10);
+        List<Stock> inputStocks = StockMocks.getStocks(10);
         int pageNumber = 1;
         int pageSize = 2;
         List<Stock> expectedStocksPage = inputStocks.subList(2, 4);
 
         // Ejecutar
-        List<Stock> actualStocksPage  = getPageStockUseCase.action(inputStocks , pageNumber, pageSize);
+        List<Stock> actualStocksPage = getPageStockUseCase.action(inputStocks, pageNumber, pageSize);
 
         // Verificar
-        assertEquals(pageSize, actualStocksPage .size(), "El tamaño de la pagina debe ser: " + pageSize);
+        assertEquals(pageSize, actualStocksPage.size(), "El tamaño de la pagina debe ser: " + pageSize);
         assertArrayEquals(expectedStocksPage.toArray(), actualStocksPage.toArray(),
                 "La página devuelta no coincide con la página esperada");
     }

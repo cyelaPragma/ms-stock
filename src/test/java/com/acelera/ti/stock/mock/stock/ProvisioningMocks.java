@@ -1,6 +1,7 @@
 package com.acelera.ti.stock.mock.stock;
 
 import com.acelera.ti.stock.domain.model.model.stock.Provisioning;
+
 import java.time.LocalDate;
 
 public class ProvisioningMocks {

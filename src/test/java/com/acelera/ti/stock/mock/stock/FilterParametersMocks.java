@@ -5,7 +5,7 @@ import com.acelera.ti.stock.mock.product.BrandMocks;
 import com.acelera.ti.stock.mock.product.CategoryMocks;
 
 public class FilterParametersMocks {
-    public static FilterParameters getFilterAllParameters(){
+    public static FilterParameters getFilterAllParameters() {
         return FilterParameters.builder()
                 .brand(BrandMocks.getBrands(2, 3))
                 .category(CategoryMocks.getCategories(3, 5))
@@ -14,7 +14,7 @@ public class FilterParametersMocks {
                 .build();
     }
 
-    public static FilterParameters getFilterByPrice(Double minPrice, Double maxPrice){
+    public static FilterParameters getFilterByPrice(Double minPrice, Double maxPrice) {
         return FilterParameters.builder()
                 .minPrice(minPrice)
                 .maxPrice(maxPrice)
@@ -31,36 +31,36 @@ public class FilterParametersMocks {
                 .build();
     }
 
-    public static FilterParameters getFilterByBrand(int start, int end){
+    public static FilterParameters getFilterByBrand(int start, int end) {
         return FilterParameters.builder()
                 .brand(BrandMocks.getBrands(start, end))
                 .build();
     }
 
-    public static FilterParameters getFilterByCategory(int start, int end){
+    public static FilterParameters getFilterByCategory(int start, int end) {
         return FilterParameters.builder()
                 .category(CategoryMocks.getCategories(start, end))
                 .build();
     }
 
-    public static FilterParameters getFilterByBrandAndCategory(){
+    public static FilterParameters getFilterByBrandAndCategory() {
         return FilterParameters.builder()
-                .category(CategoryMocks.getCategories(3,5))
-                .brand((BrandMocks.getBrands(4,5)))
+                .category(CategoryMocks.getCategories(3, 5))
+                .brand((BrandMocks.getBrands(4, 5)))
                 .build();
     }
 
-    public static FilterParameters getFilterByBrandAndPrice(Double minPrice, Double maxPrice){
+    public static FilterParameters getFilterByBrandAndPrice(Double minPrice, Double maxPrice) {
         return FilterParameters.builder()
-                .brand((BrandMocks.getBrands(1,5)))
+                .brand((BrandMocks.getBrands(1, 5)))
                 .minPrice(minPrice)
                 .maxPrice(maxPrice)
                 .build();
     }
 
-    public static FilterParameters getFilterByPriceAndCategory(Double minPrice, Double maxPrice ){
+    public static FilterParameters getFilterByPriceAndCategory(Double minPrice, Double maxPrice) {
         return FilterParameters.builder()
-                .category((CategoryMocks.getCategories(7,7)))
+                .category((CategoryMocks.getCategories(7, 7)))
                 .minPrice(minPrice)
                 .maxPrice(maxPrice)
                 .build();

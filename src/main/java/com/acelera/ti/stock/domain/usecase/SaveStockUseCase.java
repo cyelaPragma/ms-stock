@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class SaveStockUseCase {
     private final StockRepository stockRepository;
+
     public Stock action(Stock stock) {
         return stockRepository.saveStock(stock);
     }

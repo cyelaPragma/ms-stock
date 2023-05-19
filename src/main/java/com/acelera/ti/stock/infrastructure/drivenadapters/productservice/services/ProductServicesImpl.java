@@ -5,6 +5,7 @@ import com.acelera.ti.stock.domain.model.model.product.Product;
 import com.acelera.ti.stock.infrastructure.drivenadapters.productservice.feigmClient.ProductFeignClient;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 
 @Service
