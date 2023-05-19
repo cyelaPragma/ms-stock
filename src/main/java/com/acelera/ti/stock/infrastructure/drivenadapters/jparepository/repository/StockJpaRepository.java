@@ -7,3 +7,4 @@ import java.util.List;
 public interface StockJpaRepository extends JpaRepository<StockEntity, Long> {
     List<StockEntity> findByAmountGreaterThanAndSellPriceIsNotNull(int amount);
 }
+

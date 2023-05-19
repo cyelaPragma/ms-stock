@@ -6,6 +6,9 @@ import com.acelera.ti.stock.domain.model.model.stock.Stock;
 import com.acelera.ti.stock.domain.usecase.GetStockUseCase;
 import com.acelera.ti.stock.domain.usecase.SaveStockUseCase;
 import com.acelera.ti.stock.domain.usecase.orchestrator.FilterStockByParametersUseCase;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import com.acelera.ti.stock.domain.usecase.orchestrator.GetProductsForSaleUseCase;
 import com.acelera.ti.stock.infrastructure.entrypoints.rest.dto.ProductForSaleDto;
 import com.acelera.ti.stock.infrastructure.entrypoints.rest.mapper.ProductForSaleMapper;
@@ -15,6 +18,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import com.acelera.ti.stock.domain.usecase.orchestrator.UpdateStockSellPriceUseCase;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
@@ -42,7 +46,7 @@ public class StockController {
     }
     @PostMapping("/filter")
     public ResponseEntity<List<Stock>> filterStockByParameters(
-            @RequestBody FilterParameters filterParameters,@RequestParam int page, @RequestParam int size) {
+            @RequestBody FilterParameters filterParameters, @RequestParam int page, @RequestParam int size) {
         List<Stock> stockList = filterStockByParameters.action(filterParameters, page, size);
         HttpStatus status = stockList.isEmpty() ? HttpStatus.NO_CONTENT : HttpStatus.OK;
         return ResponseEntity.status(status).body(stockList);

@@ -23,8 +23,8 @@ import java.util.List;
 @Component
 public class JwtTokenFilter extends OncePerRequestFilter {
 
-    private List<String> excludedPrefixes = Arrays.asList("/auth/**", "/swagger-ui/**");
-    private AntPathMatcher pathMatcher = new AntPathMatcher();
+    private final List<String> excludedPrefixes = Arrays.asList("/auth/**", "/swagger-ui/**");
+    private final AntPathMatcher pathMatcher = new AntPathMatcher();
     @Autowired
     private JwtProvider jwtProvider;
 
@@ -62,3 +62,5 @@ public class JwtTokenFilter extends OncePerRequestFilter {
         return null;
     }
 }
+
+

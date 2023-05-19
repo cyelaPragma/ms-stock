@@ -13,8 +13,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.doThrow;
+import static org.mockito.Mockito.when;
 
 @SpringBootTest
 class GetAllProductsUseCaseTest {
@@ -48,6 +51,7 @@ class GetAllProductsUseCaseTest {
         when(productServices.getAllProducts()).thenReturn(null);
         assertThrows(NotExistProductsException.class, () -> getAllProductsUseCase.action());
     }
+
     @Test
     void readAllProductsTechnicalError() {
         doThrow(TechnicalException.class).when(productServices).getAllProducts();

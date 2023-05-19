@@ -11,27 +11,29 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "stocks")
+@Table(name = "carrito_stock")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 @Builder
-public class StockEntity {
+public class ShoppingCartProductEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "id_Product")
-    private Long productId;
+    @ManyToOne
+    @JoinColumn(name = "id_stock", referencedColumnName = "id")
+    private StockEntity stock;
 
-    @Column(name = "precio_venta")
-    private Double sellPrice;
-
-    @Column(name = "cantidad")
-    private int amount;
+    @Column(name = "cantidad", nullable = false)
+    private Integer amount;
 }
+
+

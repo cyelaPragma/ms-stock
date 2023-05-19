@@ -13,9 +13,13 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
+
 import java.util.List;
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @SpringBootTest
 class FilterStockByParametersUseCaseTest {
@@ -145,7 +149,7 @@ class FilterStockByParametersUseCaseTest {
 
     @Test
     @DisplayName("Filter products by Brand and Category")
-    void testActionFilterByBrandAndCategory(){
+    void testActionFilterByBrandAndCategory() {
         //configurar
         int pageNumber = 0;
         int pageSize = 10;
@@ -167,7 +171,7 @@ class FilterStockByParametersUseCaseTest {
 
     @Test
     @DisplayName("Filter products by Brand and Price")
-    void testActionFilterByBrandAndPrice(){
+    void testActionFilterByBrandAndPrice() {
         // Configurar
         int pageNumber = 0;
         int pageSize = 10;
