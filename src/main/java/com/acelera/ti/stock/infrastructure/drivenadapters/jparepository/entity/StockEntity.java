@@ -8,6 +8,8 @@ import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -20,19 +22,16 @@ import javax.persistence.Table;
 @Builder
 public class StockEntity {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private long id;
+    private Long id;
 
-    @Column(name = "id_product")
-    private long productId;
+    @Column(name = "id_Product")
+    private Long productId;
 
     @Column(name = "precio_venta")
-    private double sellPrice;
+    private Double sellPrice;
 
     @Column(name = "cantidad")
     private int amount;
 }
-
-
-
-

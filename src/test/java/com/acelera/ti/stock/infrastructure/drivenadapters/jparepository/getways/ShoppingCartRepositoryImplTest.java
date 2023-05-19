@@ -3,12 +3,12 @@ package com.acelera.ti.stock.infrastructure.drivenadapters.jparepository.getways
 import com.acelera.ti.stock.domain.model.exceptions.ShoppingCartNotFoundException;
 import com.acelera.ti.stock.domain.model.model.cart.ShoppingCart;
 import com.acelera.ti.stock.infrastructure.drivenadapters.jparepository.entity.ShoppingCartEntity;
+import com.acelera.ti.stock.infrastructure.drivenadapters.jparepository.entity.ShoppingCartProductEntity;
+import com.acelera.ti.stock.infrastructure.drivenadapters.jparepository.entity.StockEntity;
 import com.acelera.ti.stock.infrastructure.drivenadapters.jparepository.mapper.ShoppingCartMapper;
 import com.acelera.ti.stock.infrastructure.drivenadapters.jparepository.repository.ShoppingCartJpaRepository;
-import com.acelera.ti.stock.infrastructure.drivenadapters.jparepository.repository.ShoppingCartProductJpaRepository;
 import com.acelera.ti.stock.mock.cart.ShoppingCartMocks;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -17,7 +17,9 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.Optional;
+import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -32,9 +34,6 @@ class ShoppingCartRepositoryImplTest {
     @Mock
     private ShoppingCartMapper shoppingCartMapper;
 
-    @Mock
-    private ShoppingCartProductJpaRepository shoppingCartProductJpaRepository;
-
     @InjectMocks
     private ShoppingCartRepositoryImpl shoppingCartRepositoryImpl;
 
@@ -42,7 +41,7 @@ class ShoppingCartRepositoryImplTest {
     void setUp() {
         MockitoAnnotations.openMocks(this);
         shoppingCartRepositoryImpl = new ShoppingCartRepositoryImpl(
-                shoppingCartJpaRepository, shoppingCartProductJpaRepository, shoppingCartMapper);
+                shoppingCartJpaRepository, shoppingCartMapper);
     }
 
     @Test
@@ -54,13 +53,13 @@ class ShoppingCartRepositoryImplTest {
 
         ShoppingCartEntity shoppingCartEntity = ShoppingCartEntity.builder()
                 .id(1L)
-                .userId(userId)
+                .idUser(userId)
                 .lastUpdate(LocalDate.now())
                 .build();
 
         ShoppingCart shoppingCart = ShoppingCartMocks.getShoppingCart(userId);
 
-        when(shoppingCartJpaRepository.findByUserId(userId)).thenReturn(Optional.of(shoppingCartEntity));
+        when(shoppingCartJpaRepository.findByIdUser(userId)).thenReturn(Optional.of(shoppingCartEntity));
         when(shoppingCartMapper.shoppingCartEntityToShoppingCart(shoppingCartEntity)).thenReturn(shoppingCart);
 
         // Ejecutar
@@ -77,7 +76,7 @@ class ShoppingCartRepositoryImplTest {
     void testGetShoppingCartByUserIdNotFoundException() {
         //Configurar
         Long userId = 123L;
-        when(shoppingCartJpaRepository.findByUserId(userId)).thenReturn(Optional.empty());
+        when(shoppingCartJpaRepository.findByIdUser(userId)).thenReturn(Optional.empty());
 
         // Ejecutar y Verificar
         assertThrows(ShoppingCartNotFoundException.class, () ->
@@ -85,10 +84,36 @@ class ShoppingCartRepositoryImplTest {
     }
 
     @Test
-    @Disabled
+    @DisplayName("")
     void testRemoveProductFromCart() {
         // Configurar
+        long productId = 1L;
+        long cartId = 2L;
+        long userId = 1L;
+
+        ShoppingCartProductEntity shoppingCartProduct = ShoppingCartProductEntity.builder()
+                .id(1L)
+                .stock(StockEntity.builder()
+                        .productId(productId)
+                        .build())
+                .build();
+
+        Set<ShoppingCartProductEntity> productEntities = new HashSet<>();
+        productEntities.add(shoppingCartProduct);
+
+        ShoppingCartEntity expectedCart = ShoppingCartEntity.builder()
+                .id(cartId)
+                .idUser(userId)
+                .products(productEntities)
+                .lastUpdate(LocalDate.now())
+                .build();
+
+        when(shoppingCartJpaRepository.findById(cartId)).thenReturn(Optional.of(expectedCart));
+
         // Ejecutar
+        shoppingCartRepositoryImpl.removeProductFromCart(productId, cartId);
+
         // Verificar
+        assertEquals(0, expectedCart.getProducts().size());
     }
 }

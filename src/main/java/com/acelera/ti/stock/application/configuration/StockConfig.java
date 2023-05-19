@@ -5,18 +5,14 @@ import com.acelera.ti.stock.domain.model.gateways.repositories.StockRepository;
 import com.acelera.ti.stock.domain.model.gateways.services.ProductServices;
 import com.acelera.ti.stock.domain.usecase.*;
 import com.acelera.ti.stock.domain.usecase.orchestrator.*;
-import com.acelera.ti.stock.infrastructure.drivenadapters.productservice.feigmClient.ProductFeignClient;
-import com.acelera.ti.stock.infrastructure.drivenadapters.productservice.services.ProductServicesImpl;
+import com.acelera.ti.stock.domain.usecase.orchestrator.FilterStockByParametersUseCase;
+import com.acelera.ti.stock.domain.usecase.orchestrator.GetProductsForSaleUseCase;
+import com.acelera.ti.stock.domain.usecase.orchestrator.UpdateStockSellPriceUseCase;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class StockConfig {
-    @Bean
-    public ProductServices productServices(ProductFeignClient productFeignClient) {
-        return new ProductServicesImpl(productFeignClient);
-    }
-
     @Bean
     public GetAllProductsUseCase getAllProductsUseCase(ProductServices productServices) {
         return new GetAllProductsUseCase(productServices);
@@ -56,12 +52,6 @@ public class StockConfig {
     @Bean
     public GetShoppingCartUseCase getShoppingCartUseCase(ShoppingCartRepository shoppingCartRepository) {
         return new GetShoppingCartUseCase(shoppingCartRepository);
-    }
-
-    @Bean
-    public DeleteProductsByCartUseCase deleteProductsByCartUseCase(
-            GetShoppingCartUseCase getShoppingCartUseCase, ShoppingCartRepository shoppingCartRepository) {
-        return new DeleteProductsByCartUseCase(getShoppingCartUseCase, shoppingCartRepository);
     }
 
     @Bean

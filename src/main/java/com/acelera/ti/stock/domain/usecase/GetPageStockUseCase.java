@@ -9,10 +9,7 @@ import java.util.stream.Collectors;
 
 public class GetPageStockUseCase {
     private static boolean isPageNumberExist(int pageNumber, int pageSize, int totalStocks) {
-        int totalPages = totalStocks / pageSize;
-        if (totalStocks % pageSize != 0) {
-            totalPages++;
-        }
+        int totalPages = (int) Math.ceil((double) totalStocks / pageSize);
         return pageNumber <= totalPages;
     }
 

@@ -29,3 +29,6 @@ hs_err_pid*
 #Mac
 .DS_Store
 .gradle/
+
+# Archivo de configuracion para desarrollo
+src/main/resources/application-dev.yml

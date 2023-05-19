@@ -1,31 +1,29 @@
 package com.acelera.ti.stock.domain.usecase.orchestrator;
 
-import com.acelera.ti.stock.domain.model.exceptions.ProductNotFoundException;
 import com.acelera.ti.stock.domain.model.gateways.repositories.ShoppingCartRepository;
 import com.acelera.ti.stock.domain.model.model.cart.ShoppingCart;
-import com.acelera.ti.stock.domain.model.model.cart.ShoppingCartProduct;
 import com.acelera.ti.stock.domain.usecase.GetShoppingCartUseCase;
 import com.acelera.ti.stock.mock.cart.ShoppingCartMocks;
 import com.acelera.ti.stock.mock.cart.ShoppingCartProductMocks;
+import com.acelera.ti.stock.mock.user.PersonMocks;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest
-class DeleteProductsByCartUseCaseTest {
+class DeleteProductsFromCartUseCaseTest {
     @InjectMocks
-    private DeleteProductsByCartUseCase deleteProductsByCartUseCase;
+    private DeleteProductsFromCartUseCase deleteProductsFromCartUseCase;
 
     @Mock
     private GetShoppingCartUseCase getShoppingCartUseCase;
@@ -35,7 +33,8 @@ class DeleteProductsByCartUseCaseTest {
 
     @BeforeEach
     void setUp() {
-        deleteProductsByCartUseCase = new DeleteProductsByCartUseCase(getShoppingCartUseCase, shoppingCartRepository);
+        MockitoAnnotations.openMocks(this);
+        deleteProductsFromCartUseCase = new DeleteProductsFromCartUseCase(getShoppingCartUseCase, shoppingCartRepository);
     }
 
     @Test
@@ -44,18 +43,21 @@ class DeleteProductsByCartUseCaseTest {
     void testDeleteProductFromCart() {
         // Configurar
         long userId = 1L;
-        long productId = 5L;
-        ShoppingCart expectedCart = ShoppingCartMocks.getShoppingCart(userId);
-        ShoppingCartProduct productToDelete = ShoppingCartProductMocks.getShoppingCartProduct(productId);
+        long productId = 2L;
+
+        ShoppingCart expectedCart = ShoppingCart.builder()
+                .id(1L)
+                .user(PersonMocks.getPerson(userId))
+                .products(ShoppingCartProductMocks.getProducts(2))
+                .lastUpdate(LocalDate.now())
+                .build();
         when(getShoppingCartUseCase.action(userId)).thenReturn(expectedCart);
 
         // Ejecutar
-        deleteProductsByCartUseCase.action(productId, userId);
+        deleteProductsFromCartUseCase.action(productId, userId);
 
         // Verificar
-        assertEquals(4, expectedCart.getProducts().size());
-        assertEquals(expectedCart.getLastUpdate(), LocalDate.now());
-        assertFalse(expectedCart.getProducts().contains(productToDelete));
+        verify(shoppingCartRepository).removeProductFromCart(productId, expectedCart.getId());
     }
 
     @Test
@@ -71,29 +73,13 @@ class DeleteProductsByCartUseCaseTest {
         when(getShoppingCartUseCase.action(userId)).thenReturn(expectedCart);
 
         // Ejecutar
-        deleteProductsByCartUseCase.action(productId, userId);
+        deleteProductsFromCartUseCase.action(productId, userId);
 
         // Verificar
         assertEquals(initialSize, expectedCart.getProducts().size());
         assertEquals(initialLastUpdate, expectedCart.getLastUpdate());
     }
-
-    @Test
-    @DisplayName("Given an empty cart, When trying to delete a product, " +
-            "Then a ProductNotFoundException should be thrown")
-    void testDeleteProductFromEmptyCart() {
-        // Configurar
-        long userId = 2L;
-        long productId = 5L;
-        ShoppingCart emptyCart = ShoppingCart.builder().build();
-
-        // Ejecutar
-        when(getShoppingCartUseCase.action(userId)).thenReturn(emptyCart);
-
-        // verificar
-        assertThrows(ProductNotFoundException.class, () -> deleteProductsByCartUseCase.action(productId, userId));
-        verify(getShoppingCartUseCase).action(userId);
-    }
 }
+
 
 

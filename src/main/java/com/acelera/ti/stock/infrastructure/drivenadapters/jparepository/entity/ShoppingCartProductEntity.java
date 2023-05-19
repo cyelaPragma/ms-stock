@@ -29,14 +29,11 @@ public class ShoppingCartProductEntity {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "id_carrito")
-    private ShoppingCartEntity shoppingCart;
-
-    @ManyToOne
     @JoinColumn(name = "id_stock", referencedColumnName = "id")
     private StockEntity stock;
 
-    @Column(name = "cantidad")
+    @Column(name = "cantidad", nullable = false)
     private Integer amount;
 }
+
 
