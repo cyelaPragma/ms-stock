@@ -21,3 +21,14 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+
+#intellij IDE
+/.idea
+/build
+
+#Mac
+.DS_Store
+.gradle/
+
+# Archivo de configuracion para desarrollo
+src/main/resources/application-dev.yml
