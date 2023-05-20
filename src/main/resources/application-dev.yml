@@ -1,14 +1,13 @@
-server:
-  port: 8081
-
 spring:
   datasource:
-    url: jdbc:mysql://localhost/stock
+    url: jdbc:mysql://localhost:3307/stock
     username: root
-    password: root
+    password: Juank5680
 
   jpa:
     hibernate:
       host: localhost
-      port: 3306
+      port: 3307
       database: stock
+      ddl-auto: update
+      show-sql: true

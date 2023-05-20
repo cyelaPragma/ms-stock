@@ -9,14 +9,12 @@ import com.acelera.ti.stock.domain.usecase.orchestrator.FilterStockByParametersU
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import com.acelera.ti.stock.domain.usecase.orchestrator.GetProductsForSaleUseCase;
 import com.acelera.ti.stock.infrastructure.entrypoints.rest.dto.ProductForSaleDto;
 import com.acelera.ti.stock.infrastructure.entrypoints.rest.mapper.ProductForSaleMapper;
 import org.springframework.security.access.prepost.PreAuthorize;
 import com.acelera.ti.stock.domain.usecase.orchestrator.UpdateStockSellPriceUseCase;
-import com.acelera.ti.stock.infrastructure.response.ResponseDTO;
-import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
@@ -42,6 +40,7 @@ public class StockController {
         HttpStatus status = stock.getId() != null ? HttpStatus.OK : HttpStatus.NOT_FOUND;
         return new ResponseEntity<>(stock, status);
     }
+
     @PostMapping("/filter")
     public ResponseEntity<List<Stock>> filterStockByParameters(
             @RequestBody FilterParameters filterParameters, @RequestParam int page, @RequestParam int size) {
@@ -60,7 +59,7 @@ public class StockController {
     }
     
     @PatchMapping( "/{stockId}")
-    public ResponseEntity<Stock> UpdateStockSellPrice(@PathVariable("stockId") Long stockId, @RequestParam("sellPrice") Double sellPrice) {
+    public ResponseEntity<Stock> updateStockSellPrice(@PathVariable("stockId") Long stockId, @RequestParam("sellPrice") Double sellPrice) {
         Stock stock = updateStockSellPrice.action(stockId, sellPrice);
         return ResponseEntity.status(HttpStatus.OK).body(stock);
     }

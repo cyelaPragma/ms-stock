@@ -1,15 +1,12 @@
 package com.acelera.ti.stock.application.configuration;
 
+import com.acelera.ti.stock.domain.model.gateways.repositories.ShoppingCartRepository;
 import com.acelera.ti.stock.domain.model.gateways.repositories.StockRepository;
 import com.acelera.ti.stock.domain.model.gateways.services.ProductServices;
 import com.acelera.ti.stock.domain.usecase.*;
 import com.acelera.ti.stock.domain.usecase.orchestrator.FilterStockByParametersUseCase;
-
 import com.acelera.ti.stock.domain.usecase.orchestrator.GetProductsForSaleUseCase;
 import com.acelera.ti.stock.domain.usecase.orchestrator.UpdateStockSellPriceUseCase;
-import com.acelera.ti.stock.infrastructure.drivenadapters.productservice.feigmClient.ProductFeignClient;
-import com.acelera.ti.stock.infrastructure.drivenadapters.productservice.services.ProductServicesImpl;
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -52,6 +49,11 @@ public class StockConfig {
     }
 
     @Bean
+    public GetShoppingCartUseCase getShoppingCartUseCase(ShoppingCartRepository shoppingCartRepository) {
+        return new GetShoppingCartUseCase(shoppingCartRepository);
+    }
+
+    @Bean
     public GetStocksForSaleUseCase getStocksForSaleUseCase(StockRepository stockRepository){
         return new GetStocksForSaleUseCase(stockRepository);
     }
@@ -68,5 +70,3 @@ public class StockConfig {
         return new UpdateStockSellPriceUseCase(saveStockUseCase, getStockUseCase);
     }
 }
-
-

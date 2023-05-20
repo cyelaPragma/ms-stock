@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class GetPageStockUseCase {
+    static final int PAGE_SIZE_DEFAULT = 20;
     private static boolean isPageNumberExist(int pageNumber, int pageSize, int totalStocks) {
         int totalPages = (int) Math.ceil((double) totalStocks / pageSize);
         return pageNumber <= totalPages;
@@ -15,7 +16,7 @@ public class GetPageStockUseCase {
 
     public List<Stock> action(Collection<Stock> stock, int pageNumber, int pageSize) {
         if (pageSize == 0) {
-            pageSize = 20;
+            pageSize = PAGE_SIZE_DEFAULT;
         }
 
         if (stock == null || !isPageNumberExist(pageNumber, pageSize, stock.size())) {
