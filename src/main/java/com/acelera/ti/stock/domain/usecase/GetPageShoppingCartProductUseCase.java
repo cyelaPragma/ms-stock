@@ -6,9 +6,11 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class GetPageShoppingCartProductUseCase {
+    static final int PAGE_SIZE_DEFAULT = 20;
+
     public Set<ShoppingCartProduct> action (Set<ShoppingCartProduct> shoppingCartProducts, int pageNumber, int pageSize) {
         if (pageSize == 0) {
-            pageSize = 20;
+            pageSize = PAGE_SIZE_DEFAULT;
         }
         if(shoppingCartProducts == null || !isPageNumberExist(pageNumber, pageSize, shoppingCartProducts.size())){
             throw new NotExistShoppingCartProductPageException();
@@ -19,11 +21,8 @@ public class GetPageShoppingCartProductUseCase {
                 .collect(Collectors.toSet());
     }
 
-    private static boolean isPageNumberExist(int pageNumber, int pageSize, int totalStocks) {
-        int totalPages = totalStocks / pageSize;
-        if (totalStocks % pageSize != 0) {
-            totalPages++;
-        }
+    public boolean isPageNumberExist(int pageNumber, int pageSize, int totalShoppingCartProducts) {
+        int totalPages = (int) Math.ceil((double)totalShoppingCartProducts / (double)pageSize);
         return pageNumber <= totalPages;
     }
 }

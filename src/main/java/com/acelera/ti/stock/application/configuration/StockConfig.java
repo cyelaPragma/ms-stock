@@ -4,7 +4,6 @@ import com.acelera.ti.stock.domain.model.gateways.repositories.ShoppingCartRepos
 import com.acelera.ti.stock.domain.model.gateways.repositories.StockRepository;
 import com.acelera.ti.stock.domain.model.gateways.services.ProductServices;
 import com.acelera.ti.stock.domain.usecase.*;
-import com.acelera.ti.stock.domain.usecase.orchestrator.*;
 import com.acelera.ti.stock.domain.usecase.orchestrator.FilterStockByParametersUseCase;
 import com.acelera.ti.stock.domain.usecase.orchestrator.GetProductsForSaleUseCase;
 import com.acelera.ti.stock.domain.usecase.orchestrator.UpdateStockSellPriceUseCase;
@@ -69,17 +68,5 @@ public class StockConfig {
     public UpdateStockSellPriceUseCase updateStockSellPriceUseCase(
             SaveStockUseCase saveStockUseCase, GetStockUseCase getStockUseCase){
         return new UpdateStockSellPriceUseCase(saveStockUseCase, getStockUseCase);
-    }
-
-    @Bean
-    public GetPageShoppingCartProductUseCase getPageShoppingCartProductUseCase(){
-        return new GetPageShoppingCartProductUseCase();
-    }
-
-    @Bean
-    public GetProductsByCartUseCase getProductsByCartUseCase(
-            GetShoppingCartUseCase getShoppingCartUseCase, GetPageShoppingCartProductUseCase getProductByCartUseCase,
-            GetProductUseCase getProductUseCase) {
-        return new GetProductsByCartUseCase(getShoppingCartUseCase, getProductByCartUseCase, getProductUseCase);
     }
 }
