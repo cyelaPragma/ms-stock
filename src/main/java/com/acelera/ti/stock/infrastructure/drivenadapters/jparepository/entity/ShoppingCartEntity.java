@@ -46,4 +46,3 @@ public class ShoppingCartEntity {
     @JoinColumn(name = "id_carrito")
     private Set<ShoppingCartProductEntity> products;
 }
-

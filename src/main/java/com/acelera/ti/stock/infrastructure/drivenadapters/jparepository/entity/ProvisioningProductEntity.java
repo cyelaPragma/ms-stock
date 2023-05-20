@@ -15,18 +15,18 @@ import javax.persistence.*;
 public class ProvisioningProductEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "ID")
+    @Column(name = "id")
     private long id;
-    @Column(name = "ID_ABASTECIMIENTO")
+    @Column(name = "id_abastecimiento")
     private Long provisioningId;
 
     @ManyToOne
-    @JoinColumn(name="ID_STOCK", nullable = false)
+    @JoinColumn(name="id_stock", nullable = false)
     private Stock stock;
 
-    @Column(name = "CANTIDAD")
+    @Column(name = "cantidad")
     private int amount;
 
-    @Column(name = "PRECIO_ENTRADA")
+    @Column(name = "precio_entrada")
     private Double providerPrice;
 }
