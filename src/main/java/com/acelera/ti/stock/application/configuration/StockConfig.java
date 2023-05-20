@@ -49,11 +49,6 @@ public class StockConfig {
     }
 
     @Bean
-    public GetShoppingCartUseCase getShoppingCartUseCase(ShoppingCartRepository shoppingCartRepository) {
-        return new GetShoppingCartUseCase(shoppingCartRepository);
-    }
-
-    @Bean
     public GetStocksForSaleUseCase getStocksForSaleUseCase(StockRepository stockRepository){
         return new GetStocksForSaleUseCase(stockRepository);
     }
