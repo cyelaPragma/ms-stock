@@ -10,7 +10,7 @@ import java.util.Set;
 @Getter
 @Setter
 public class ShoppingCartDto {
-    private Long userId;
+    private Long idUser;
     private Set<Long> productsId;
     private int amount;
 }
