@@ -1,7 +1,7 @@
 package com.acelera.ti.stock.infrastructure.drivenadapters.jparepository.entity;
 
-import com.acelera.ti.stock.domain.model.model.stock.ProvisioningProduct;
-import com.fasterxml.jackson.annotation.JsonFormat;
+//import com.acelera.ti.stock.domain.model.model.stock.ProvisioningProduct;
+//import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -10,15 +10,15 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Set;
 
-@Entity
-@Table(name = "provisionings")
-@AllArgsConstructor
-@NoArgsConstructor
-@Getter
-@Setter
-@Builder
+//@Entity
+//@Table(name = "provisionings")
+//@AllArgsConstructor
+//@NoArgsConstructor
+//@Getter
+//@Setter
+//@Builder
 public class ProvisioningEntity {
-    @Id
+   /* @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private long id;
@@ -32,4 +32,6 @@ public class ProvisioningEntity {
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "id_stock")
     private Set<ProvisioningProductEntity> products;
+
+    */
 }

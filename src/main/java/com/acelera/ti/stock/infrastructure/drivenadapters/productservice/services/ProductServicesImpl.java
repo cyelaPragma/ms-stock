@@ -2,7 +2,7 @@ package com.acelera.ti.stock.infrastructure.drivenadapters.productservice.servic
 
 import com.acelera.ti.stock.domain.model.gateways.services.ProductServices;
 import com.acelera.ti.stock.domain.model.model.product.Product;
-import com.acelera.ti.stock.infrastructure.drivenadapters.productservice.feigmClient.ProductFeignClient;
+import com.acelera.ti.stock.infrastructure.drivenadapters.productservice.feignClient.ProductFeignClient;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

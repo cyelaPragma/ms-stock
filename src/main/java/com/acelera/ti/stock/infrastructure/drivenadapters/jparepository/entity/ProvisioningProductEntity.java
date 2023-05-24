@@ -1,19 +1,19 @@
 package com.acelera.ti.stock.infrastructure.drivenadapters.jparepository.entity;
 
-import com.acelera.ti.stock.domain.model.model.stock.Stock;
 import lombok.*;
 
-import javax.persistence.*;
+//import javax.persistence.*;
 
-@Entity
-@Table(name = "provisionings-product")
+/*@Entity
+//@Table(name = "provisionings-product")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 @Builder
+*/
 public class ProvisioningProductEntity {
-    @Id
+  /*  @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private long id;
@@ -21,12 +21,14 @@ public class ProvisioningProductEntity {
     private Long provisioningId;
 
     @ManyToOne
-    @JoinColumn(name="id_stock", nullable = false)
-    private Stock stock;
+    @JoinColumn(name="id_stock", referencedColumnName = "id")
+    private StockEntity stock;
 
     @Column(name = "cantidad")
     private int amount;
 
     @Column(name = "precio_entrada")
     private Double providerPrice;
+
+   */
 }

@@ -7,8 +7,6 @@ import com.acelera.ti.stock.domain.usecase.orchestrator.FilterStockByParametersU
 
 import com.acelera.ti.stock.domain.usecase.orchestrator.GetProductsForSaleUseCase;
 import com.acelera.ti.stock.domain.usecase.orchestrator.UpdateStockSellPriceUseCase;
-import com.acelera.ti.stock.infrastructure.drivenadapters.productservice.feigmClient.ProductFeignClient;
-import com.acelera.ti.stock.infrastructure.drivenadapters.productservice.services.ProductServicesImpl;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

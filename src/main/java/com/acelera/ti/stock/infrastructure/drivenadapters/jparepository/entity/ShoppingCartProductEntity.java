@@ -35,5 +35,3 @@ public class ShoppingCartProductEntity {
     @Column(name = "cantidad", nullable = false)
     private Integer amount;
 }
-
-

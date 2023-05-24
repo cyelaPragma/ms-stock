@@ -10,7 +10,7 @@ spring:
   profiles:
     include: ${PROFILE}
   datasource:
-    url: jdbc:mysql://localhost/stock
+    url: jdbc:mysql://localhost/acelerateti
     username: root
     password: Leandro2009*
 
@@ -18,8 +18,8 @@ spring:
     hibernate:
       host: localhost
       port: 3306
-      database: stock
-      ddl-auto: update
+      database: acelerateti
+      ddl-auto: create
       show-sql: true
       dialect: org.hibernate.dialect.MySQL8Dialect
       format_sql: true
