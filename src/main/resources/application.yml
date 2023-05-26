@@ -1,24 +1,24 @@
 server:
-  port: 8080
+  port: ${SERVER_PORT}
 
 external:
   mock:
     api:
-      base-url: https://63f577683f99f5855dc1d874.mockapi.io/aceleraTi
+      base-url: ${PRODUCT_SERVICE_ENDPOINT}
 
 spring:
   profiles:
     include: ${PROFILE}
   datasource:
-    url: jdbc:mysql://localhost/stock
-    username: root
-    password: Leandro2009*
+    url: ${URL_DATASOURCE}
+    username: ${USER_DATASOURCE}
+    password: ${PASS_DATASOURCE}
 
   jpa:
     hibernate:
-      host: localhost
-      port: 3306
-      database: stock
+      host: ${HOST_DATASOURCE}
+      port: ${PORT_DATASOURCE}
+      database: ${NAME_DATASOURCE}
       ddl-auto: update
       show-sql: true
       dialect: org.hibernate.dialect.MySQL8Dialect
