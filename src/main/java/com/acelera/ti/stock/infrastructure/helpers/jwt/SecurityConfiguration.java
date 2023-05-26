@@ -21,7 +21,7 @@ public class SecurityConfiguration {
         httpSecurity
                 .csrf().disable()
                 .authorizeHttpRequests()
-                .antMatchers("/stocks/public").permitAll()
+                .antMatchers("/actuator/health").permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()
