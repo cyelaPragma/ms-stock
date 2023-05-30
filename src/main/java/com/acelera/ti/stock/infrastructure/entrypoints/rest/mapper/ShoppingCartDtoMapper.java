@@ -37,7 +37,6 @@ public interface ShoppingCartDtoMapper {
         }
         return productIds;
     }
-
  */
 }
 

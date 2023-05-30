@@ -12,7 +12,7 @@ spring:
   datasource:
     url: jdbc:mysql://localhost/stock
     username: root
-    password: Leandro2009*
+    password: root
 
   jpa:
     hibernate:
@@ -29,3 +29,13 @@ spring:
 jwt:
   secret: ${JWTSECRET}
   expiration: ${JWTEXPIRATION}
+
+entrypoint:
+  sqs:
+    region: "us-east-1"
+    endpoint: "https://sqs.us-east-1.amazonaws.com"
+    queueUrl: "https://sqs.us-east-1.amazonaws.com/853401687426/stock-sqs"
+    waitTimeSeconds: 20
+    maxNumberOfMessages: 10
+    visibilityTimeout: 60
+    numberOfThreads: 1
