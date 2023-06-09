@@ -19,24 +19,48 @@
             {
               "name": "stage",
               "value": "/dev"
+            },
+            {
+              "name": "SERVER_PORT",
+              "value": "8090"
+            },
+            {
+              "name": "PRODUCT_SERVICE_ENDPOINT",
+              "value": "https://63f577683f99f5855dc1d874.mockapi.io/aceleraTi"
+            },
+            {
+              "name": "NAME_DATASOURCE",
+              "value": "stock-scarface"
+            },
+            {
+              "name": "PORT_DATASOURCE",
+              "value": "3306"
+            },
+            {
+              "name": "HOST_DATASOURCE",
+              "value": "aceleratidb.c6mcx0paxyp1.us-east-1.rds.amazonaws.com"
+            },
+            {
+              "name": "JWTEXPIRATION",
+              "value": "4000"
             }
           ],
           "secrets": [
             {
-              "name": "database_url",
-              "valueFrom": "arn:aws:ssm:us-east-1:%AWS_ACCOUNT_ID%:parameter/db/url"
+              "name": "URL_DATASOURCE",
+              "valueFrom": "arn:aws:ssm:us-east-1:052727711491:parameter/db/url/scarface"
             },
             {
-              "name": "database_username",
-              "valueFrom": "arn:aws:ssm:us-east-1:%AWS_ACCOUNT_ID%:parameter/db/username"
+              "name": "PASS_DATASOURCE",
+              "valueFrom": "arn:aws:ssm:us-east-1:052727711491:parameter/db/password"
             },
             {
-              "name": "database_password",
-              "valueFrom": "arn:aws:ssm:us-east-1:%AWS_ACCOUNT_ID%:parameter/db/password"
+              "name": "JWTSECRET",
+              "valueFrom": "arn:aws:ssm:us-east-1:052727711491:parameter/config/keysecret"
             },
             {
-              "name": "KEYSECRET_SECURITY",
-              "valueFrom": "arn:aws:ssm:us-east-1:%AWS_ACCOUNT_ID%:parameter/config/keysecret"
+              "name": "USER_DATASOURCE",
+              "valueFrom": "arn:aws:ssm:us-east-1:052727711491:parameter/db/username"
             }
           ],
           "mountPoints": [],

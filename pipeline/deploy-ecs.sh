@@ -40,7 +40,6 @@ else
   TG_ALB_ARN=`aws elbv2 create-target-group --name ati-alb-${PROJECT_NAME}-tg --protocol TCP --port ${PORT} --target-type alb --vpc-id ${VPC_ID} --health-check-path "/actuator/health" --region ${AWS_REGION} | egrep 'TargetGroupArn' | tr "," " " | awk '{print $2}' | sed 's/"$//' | sed 's/"//g'`
   echo "Target group ARN: ${TG_ALB_ARN}"
 
-
   echo -e "----------------------------\ncreating listeners\n----------------------------"
   aws elbv2 create-listener --load-balancer-arn ${AWS_ALB_ARN} --protocol HTTP --port ${PORT} --default-actions Type=forward,TargetGroupArn=${TG_IP_ARN} --region ${AWS_REGION}
   aws elbv2 create-listener --load-balancer-arn ${AWS_NLB_ARN} --protocol TCP --port ${PORT} --default-actions Type=forward,TargetGroupArn=${TG_ALB_ARN} --region ${AWS_REGION}
